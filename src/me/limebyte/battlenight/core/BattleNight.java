@@ -3,6 +3,7 @@ package me.limebyte.battlenight.core;
 import java.util.logging.Logger;
 
 import me.limebyte.battlenight.core.Configuration.Config;
+import me.limebyte.battlenight.core.Configuration.Config.ConfigFile;
 
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,16 +16,23 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class BattleNight extends JavaPlugin {
 
-    public PluginDescriptionFile pdFile = this.getDescription();
-    public Logger log = this.getLogger();
+    public PluginDescriptionFile pdFile;
+    public Logger log;
     public Config config;
 
     @Override
     public void onEnable() {
 
+    	// Get plugin.yml and logger
+    	pdFile = getDescription();
+    	log = getLogger();
+    	
+    	// Register events
+    	
         // Reload configuration files
         config.reload(Config.ConfigFile.MAIN);
         config.reload(Config.ConfigFile.CLASSES);
+        config.reload(Config.ConfigFile.TRACKS);
         config.reload(Config.ConfigFile.WAYPOINTS);
         config.reload(Config.ConfigFile.PLAYERS);
 
