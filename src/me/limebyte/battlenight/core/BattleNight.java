@@ -3,8 +3,6 @@ package me.limebyte.battlenight.core;
 import java.util.logging.Logger;
 
 import me.limebyte.battlenight.core.Configuration.Config;
-import me.limebyte.battlenight.core.Configuration.Config.ConfigFile;
-
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,7 +16,7 @@ public class BattleNight extends JavaPlugin {
 
     public PluginDescriptionFile pdFile;
     public Logger log;
-    public Config config;
+    public Config config = new Config(this);
 
     @Override
     public void onEnable() {
