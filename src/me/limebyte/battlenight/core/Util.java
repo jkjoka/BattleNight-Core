@@ -18,7 +18,7 @@ public class Util {
         plugin = instance;
     }
 	
-    public String locationAsString(Location loc) {
+    public String locationToString(Location loc) {
     	String w = loc.getWorld().getName();
     	double x = loc.getX();
     	double y = loc.getY();
