@@ -28,7 +28,12 @@ public class Tracks {
         private String cp;
 
         public String getMessage() {
-            return prefix + plugin.config.get(Config.ConfigFile.TRACKS).getString(cp).replaceAll("(&([a-f0-9]))", "\u00A7$2");
+            return prefix + plugin.config.get(Config.ConfigFile.TRACKS).getString(cp).replaceAll("&([a-f0-9])", "\u00A7$1");
+        }
+        
+        public String getMessage(String[] args) {
+        	return prefix + plugin.config.get(Config.ConfigFile.TRACKS).getString(cp).replaceAll("arg([0-9])", args[Integer.parseInt("$1")])
+        																			 .replaceAll("&([a-f0-9])", "\u00A7$1");
         }
     }
 }
