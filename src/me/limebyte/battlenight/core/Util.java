@@ -1,9 +1,15 @@
 package me.limebyte.battlenight.core;
 
+import me.limebyte.battlenight.core.Battle.Team;
+import me.limebyte.battlenight.core.Configuration.Config;
+
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 /**
  * @author LimeByte.
@@ -17,6 +23,8 @@ public class Util {
     public Util(BattleNight instance) {
         plugin = instance;
     }
+    
+    Config config = plugin.config;
 	
     public String locationToString(Location loc) {
     	String w = loc.getWorld().getName();
@@ -39,6 +47,11 @@ public class Util {
     	return new Location(w, x, y, z, yaw, pitch);
     }
 	
+    
+    ////////////////////
+    //  Chat Related  //
+    ////////////////////
+    
     public void tellPlayer(Player p, Tracks.Track t) {
         p.sendMessage(t.getMessage());
     }
@@ -48,4 +61,53 @@ public class Util {
             aP.sendMessage(t.getMessage());
         }
     }
+    
+    ////////////////////
+    //  Battle Util   //
+    ////////////////////
+    
+    public void preparePlayer(Player p, Team t, Location destination) {
+    	// Inventory
+    	p.getInventory().clear();
+    	
+    	// Health
+    	p.setHealth(p.getMaxHealth());
+    	
+    	// Hunger
+    	p.setFoodLevel(16);
+    	p.setSaturation(1000);
+    	p.setExhaustion(0);
+    	
+    	// Experience
+    	p.setLevel(0);
+    	p.setExp(0);
+    	
+    	// GameMode
+    	p.setGameMode(GameMode.SURVIVAL);
+    	
+    	// Flying
+    	p.setAllowFlight(false);
+    	p.setFlying(false);
+    	
+    	// Locations
+    	p.teleport(destination, TeleportCause.PLUGIN);
+    	
+    	// Sleep
+    	p.setSleepingIgnored(true);
+    	
+    	// Information
+    	p.setDisplayName(ChatColor.GRAY+"[BN] " + t.getChatColor()+"["+t.getName()+"] " + ChatColor.WHITE + p.getName());
+    	//TODO p.setPlayerListName("");
+    	
+    	// Statistics
+    	p.setTicksLived(0);
+    	p.setNoDamageTicks(0);
+    	
+    	// State
+    	//TODO p.setRemainingAir(12345);
+    	p.setFallDistance(0);
+    	p.setFireTicks(0);
+    }
+    
+    
 }
