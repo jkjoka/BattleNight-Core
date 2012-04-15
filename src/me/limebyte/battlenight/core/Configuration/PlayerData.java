@@ -13,6 +13,7 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * @author LimeByte.
@@ -30,13 +31,23 @@ public class PlayerData {
     FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
     
     public void reloadPlayer(Player p) {
+    	
+    	// Reload the config
+    	plugin.config.reload(ConfigFile.PLAYERS);
+    	
     	if(config.getConfigurationSection(p.getName()) == null) {
     		config.set(p.getName() + ".stats.kills", obfuscate(0));
     		config.set(p.getName() + ".stats.deaths", obfuscate(0));
+        	// Save changes
+        	plugin.config.save(ConfigFile.PLAYERS);
     	}
     }
     
     public void save(Player p) {
+    	
+    	// Reload the config
+    	plugin.config.reload(ConfigFile.PLAYERS);
+    	
     	// Inventory
     	config.set(p.getName() + ".data.inv.main", p.getInventory().getContents());
     	config.set(p.getName() + ".data.inv.armor", p.getInventory().getArmorContents());
@@ -84,7 +95,50 @@ public class PlayerData {
     }
 
     public void restore(Player p) {
-
+    	// Reload the config
+    	plugin.config.reload(ConfigFile.PLAYERS);
+    	
+    	// Inventory
+    	p.getInventory().setContents((ItemStack[]) config.get(p.getName() + ".data.inv.main"));
+    	p.getInventory().setArmorContents((ItemStack[]) config.get(p.getName() + ".data.inv.armor"));
+    	
+    	// Health
+    	p.setHealth(config.getInt(p.getName() + ".data.health"));
+    	
+    	// Hunger
+    	p.setFoodLevel(config.getInt(p.getName() + ".data.hunger.foodlevel"));
+    	p.setSaturation((Float) config.get(p.getName() + ".data.hunger.saturation"));
+    	p.setExhaustion((Float) config.get(p.getName() + ".data.hunger.exhaustion"));
+    	
+    	// Experience
+    	p.setLevel(config.getInt(p.getName() + ".data.exp.level"));
+    	p.setExp((Float) config.get(p.getName() + ".data.exp.ammount"));
+    	
+    	// GameMode
+    	p.setGameMode(GameMode.getByValue(config.getInt(p.getName() + ".data.gamemode")));
+    	
+    	// Flying
+    	p.setAllowFlight(config.getBoolean(p.getName() + ".data.flight.allowed"));
+    	p.setFlying(config.getBoolean(p.getName() + ".data.flight.flying"));
+    	
+    	// Locations
+    	p.teleport(plugin.util.locationFromString(config.getString(p.getName() + ".data.location")), TeleportCause.PLUGIN);
+    	
+    	// Sleep
+    	p.setSleepingIgnored(config.getBoolean(p.getName() + ".data.sleepignored"));
+    	
+    	// Information
+    	p.setDisplayName(config.getString(p.getName() + ".data.info.displayname"));
+    	p.setPlayerListName(config.getString(p.getName() + ".data.info.listname"));
+    	
+    	// Statistics
+    	p.setTicksLived(config.getInt(p.getName() + ".data.stats.tickslived"));
+    	p.setNoDamageTicks(config.getInt(p.getName() + ".data.stats.nodamageticks"));
+    	
+    	// State
+    	p.setRemainingAir(config.getInt(p.getName() + ".data.state.remainingair"));
+    	p.setFallDistance((Float) config.get(p.getName() + ".data.state.falldistance"));
+    	p.setFireTicks(config.getInt(p.getName() + ".data.state.fireticks"));
     }
     
     public void reset(Player p, Team t, Location destination) {
