@@ -12,9 +12,10 @@ import me.limebyte.battlenight.core.Configuration.PlayerData;
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
 public class Battle {
+	
     Team redTeam = new Team();
     Team blueTeam = new Team();
-    PlayerData playerData = new PlayerData();
+    PlayerData playerData = plugin.getPlayerData();
     Config config = plugin.config;
     
     Arena[] arenas;

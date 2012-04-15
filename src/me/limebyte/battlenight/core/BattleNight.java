@@ -3,6 +3,8 @@ package me.limebyte.battlenight.core;
 import java.util.logging.Logger;
 
 import me.limebyte.battlenight.core.Configuration.Config;
+import me.limebyte.battlenight.core.Configuration.PlayerData;
+
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,6 +19,9 @@ public class BattleNight extends JavaPlugin {
     public PluginDescriptionFile pdFile;
     public Logger log;
     public Config config = new Config(this);
+    private PlayerData playerData = new PlayerData(this);
+    public Tracks tracks = new Tracks(this);
+    public Util util = new Util(this);
 
     @Override
     public void onEnable() {
@@ -40,12 +45,17 @@ public class BattleNight extends JavaPlugin {
 
         // Print enable message to the console
         log.info("Version " + pdFile.getVersion() + " enabled!");
+        log.info("Made by LimeByte.");
     }
 
     @Override
     public void onDisable() {
         // Print disable message to the console
         log.info("Version " + pdFile.getVersion() + " disabled.");
+    }
+    
+    public PlayerData getPlayerData() {
+    	return playerData;
     }
 
 }
