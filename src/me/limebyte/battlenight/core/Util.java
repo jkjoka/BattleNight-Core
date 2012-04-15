@@ -2,14 +2,12 @@ package me.limebyte.battlenight.core;
 
 import me.limebyte.battlenight.core.Battle.Team;
 import me.limebyte.battlenight.core.Configuration.Config;
+import me.limebyte.battlenight.core.Configuration.PlayerData;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 /**
  * @author LimeByte.
@@ -66,48 +64,17 @@ public class Util {
     //  Battle Util   //
     ////////////////////
     
-    public void preparePlayer(Player p, Team t, Location destination) {
-    	// Inventory
-    	p.getInventory().clear();
-    	
-    	// Health
-    	p.setHealth(p.getMaxHealth());
-    	
-    	// Hunger
-    	p.setFoodLevel(16);
-    	p.setSaturation(1000);
-    	p.setExhaustion(0);
-    	
-    	// Experience
-    	p.setLevel(0);
-    	p.setExp(0);
-    	
-    	// GameMode
-    	p.setGameMode(GameMode.SURVIVAL);
-    	
-    	// Flying
-    	p.setAllowFlight(false);
-    	p.setFlying(false);
-    	
-    	// Locations
-    	p.teleport(destination, TeleportCause.PLUGIN);
-    	
-    	// Sleep
-    	p.setSleepingIgnored(true);
-    	
-    	// Information
-    	p.setDisplayName(ChatColor.GRAY+"[BN] " + t.getChatColor()+"["+t.getName()+"] " + ChatColor.WHITE + p.getName());
-    	//TODO p.setPlayerListName("");
-    	
-    	// Statistics
-    	p.setTicksLived(0);
-    	p.setNoDamageTicks(0);
-    	
-    	// State
-    	//TODO p.setRemainingAir(12345);
-    	p.setFallDistance(0);
-    	p.setFireTicks(0);
-    }
+   public void preparePlayer(Player p, Team t, Location destination) {
+	   PlayerData pd = plugin.getPlayerData();
+	   pd.save(p);
+	   pd.reset(p, t, destination);
+   }
+   
+   public void restorePlayer(Player p, Team t, Location destination) {
+	   PlayerData pd = plugin.getPlayerData();
+	   pd.reset(p, t, destination);
+	   pd.restore(p);
+   }
     
     
 }

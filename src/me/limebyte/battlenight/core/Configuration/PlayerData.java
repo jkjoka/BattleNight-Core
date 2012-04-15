@@ -4,10 +4,15 @@ import static java.lang.Integer.parseInt;
 import static java.lang.Integer.toBinaryString;
 
 import me.limebyte.battlenight.core.BattleNight;
+import me.limebyte.battlenight.core.Battle.Team;
 import me.limebyte.battlenight.core.Configuration.Config.ConfigFile;
 
+import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 /**
  * @author LimeByte.
@@ -31,7 +36,7 @@ public class PlayerData {
     	}
     }
     
-    public void saveData(Player p) {
+    public void save(Player p) {
     	// Inventory
     	config.set(p.getName() + ".data.inv.main", p.getInventory().getContents());
     	config.set(p.getName() + ".data.inv.armor", p.getInventory().getArmorContents());
@@ -78,8 +83,52 @@ public class PlayerData {
     	plugin.config.save(ConfigFile.PLAYERS);
     }
 
-    public void restoreData(Player p) {
+    public void restore(Player p) {
 
+    }
+    
+    public void reset(Player p, Team t, Location destination) {
+    	// Inventory
+    	p.getInventory().clear();
+    	
+    	// Health
+    	p.setHealth(p.getMaxHealth());
+    	
+    	// Hunger
+    	p.setFoodLevel(16);
+    	p.setSaturation(1000);
+    	p.setExhaustion(0);
+    	
+    	// Experience
+    	p.setLevel(0);
+    	p.setExp(0);
+    	
+    	// GameMode
+    	p.setGameMode(GameMode.SURVIVAL);
+    	
+    	// Flying
+    	p.setAllowFlight(false);
+    	p.setFlying(false);
+    	
+    	// Locations
+    	p.teleport(destination, TeleportCause.PLUGIN);
+    	
+    	// Sleep
+    	p.setSleepingIgnored(true);
+    	
+    	// Information
+    	String displayName = ChatColor.GRAY+"[BN] " + t.getChatColor()+"["+t.getName()+"] " + ChatColor.WHITE + p.getName();
+    	p.setDisplayName(displayName);
+    	p.setPlayerListName(displayName.substring(0, 16));
+    	
+    	// Statistics
+    	p.setTicksLived(0);
+    	p.setNoDamageTicks(0);
+    	
+    	// State
+    	//TODO p.setRemainingAir(12345);
+    	p.setFallDistance(0);
+    	p.setFireTicks(0);
     }
 
     protected void addKill(Player killer) {
