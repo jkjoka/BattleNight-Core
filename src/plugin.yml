@@ -20,13 +20,13 @@ commands:
 permissions:
     battlenight.user:
         description: Allows you to use user commands.
-        default: false
+        default: true
     battlenight.moderator:
         description: Allows you to use moderator commands.
-        default: false
+        default: op
     battlenight.admin:
         description: Allows you to use admin commands.
-        default: false
+        default: op
         
     battlenight.*:
         description: Gives you all BattleNight permissions.
