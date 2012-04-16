@@ -1,6 +1,9 @@
 package me.limebyte.battlenight.core.Battle;
 
+import java.util.List;
+
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 /**
  * @author LimeByte.
@@ -8,14 +11,33 @@ import org.bukkit.ChatColor;
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
 public class Team {
+	
 	private String name;
-	private ChatColor chatColor;
+	private ChatColor chatColour;
+	private List<Player> players;
+	
+	public Team(String name, ChatColor chatColour) {
+		this.name = name;
+		this.chatColour = chatColour;
+	}
+	
+	public void addPlayer(Player p) {
+		players.add(p);
+	}
+	
+	public void removePlayer(Player p) {
+		players.remove(p);
+	}
 	
 	public String getName() {
 		return name;
 	}
 	
 	public ChatColor getChatColor() {
-		return chatColor;
+		return chatColour;
+	}
+	
+	public List<Player> getPlayers() {
+		return players;
 	}
 }
