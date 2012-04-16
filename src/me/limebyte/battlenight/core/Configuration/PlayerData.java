@@ -3,6 +3,8 @@ package me.limebyte.battlenight.core.Configuration;
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.toBinaryString;
 
+import java.util.Arrays;
+
 import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Battle.Team;
 import me.limebyte.battlenight.core.Configuration.Config.ConfigFile;
@@ -50,8 +52,8 @@ public class PlayerData {
     	FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
     	
     	// Inventory
-    	config.set(p.getName() + ".data.inv.main", plugin.util.serializeInv(p.getInventory().getContents()));
-    	config.set(p.getName() + ".data.inv.armor", plugin.util.serializeInv(p.getInventory().getArmorContents()));
+    	config.set(p.getName() + ".data.inv.main", Arrays.asList(p.getInventory().getContents()));
+    	config.set(p.getName() + ".data.inv.armor", Arrays.asList(p.getInventory().getArmorContents()));
     	
     	// Health
     	config.set(p.getName() + ".data.health", p.getHealth());
@@ -101,8 +103,8 @@ public class PlayerData {
     	FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
     	
     	// Inventory
-    	p.getInventory().setContents(plugin.util.deserializeInv(config.getString(p.getName() + ".data.inv.main")));
-    	p.getInventory().setArmorContents(plugin.util.deserializeInv(config.getString(p.getName() + ".data.inv.armor")));
+    	p.getInventory().setContents((ItemStack[]) config.getList(p.getName() + ".data.inv.main").toArray());
+    	p.getInventory().setArmorContents((ItemStack[]) config.getList(p.getName() + ".data.inv.armor").toArray());
     	
     	// Health
     	p.setHealth(config.getInt(p.getName() + ".data.health"));
@@ -173,9 +175,9 @@ public class PlayerData {
     	p.setSleepingIgnored(true);
     	
     	// Information
-    	String displayName = ChatColor.GRAY+"[BN] " + t.getChatColor()+"["+t.getName()+"] " + ChatColor.WHITE + p.getName();
+    	String displayName = ChatColor.GRAY+"[BN] " + t.getChatColor()+"["+t.getName().substring(0, 1)+"] " + ChatColor.WHITE + p.getName();
     	p.setDisplayName(displayName);
-    	p.setPlayerListName(displayName.substring(0, 16));
+    	p.setPlayerListName((displayName.length() < 16) ? displayName : displayName.substring(0, 16));
     	
     	// Statistics
     	p.setTicksLived(1);
