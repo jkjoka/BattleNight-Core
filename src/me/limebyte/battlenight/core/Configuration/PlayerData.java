@@ -178,7 +178,7 @@ public class PlayerData {
     	p.setPlayerListName(displayName.substring(0, 16));
     	
     	// Statistics
-    	p.setTicksLived(0);
+    	p.setTicksLived(1);
     	p.setNoDamageTicks(0);
     	
     	// State
