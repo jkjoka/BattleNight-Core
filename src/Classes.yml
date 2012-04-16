@@ -1,13 +1,12 @@
-# BattleNight Version: 1.1.1
+# BattleNight Version: 2.0
 # Classes Configuration File
 #
 # Add Classes as you wish but do not use spaces in names.
 # Items are i:dxa, i=Item d=data a=Ammount.  Data and ammount are optional
-# Each class must have at least 2 items, use the dummyitem if you only want 1
-# The DummyItem can also be used as a spacer (examples bellow)
+# The SpacerItem can be used as a blank item (examples bellow)
 # Remember, potions can not be stacked
 
-DummyItem: 6
+SpacerItem: 6
 
 Classes:
     Pyro:
