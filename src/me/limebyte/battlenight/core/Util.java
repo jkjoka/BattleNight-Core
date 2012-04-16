@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * @author LimeByte.
@@ -72,6 +73,31 @@ public class Util {
 	   pd.reset(p, t, destination);
 	   pd.restore(p);
    }
+   
+   ////////////////////
+   //   Inventory    //
+   ////////////////////
+   
+	public String serializeInv(ItemStack[] stack) {
+		String items = "";
+		for (ItemStack item : stack) {
+			items += item.getTypeId()+","+item.getAmount()+","+item.getData()+","+item.getDurability()+";"+/*enchantments+*/"|";
+		}
+		return items.substring(0, items.length() -1);
+	}
+	
+	public ItemStack[] deserializeInv(String itemsString) {
+		String[] items = itemsString.split("|");
+		ItemStack[] stack = new ItemStack[items.length];
+		for (int i=0; i<items.length; i++) {
+			String[] parts = items[i].split(",");
+			stack[i] = new ItemStack(Integer.parseInt(parts[0]),
+									 Integer.parseInt(parts[1]),
+									 Short.parseShort(parts[2]),
+									 Byte.parseByte(parts[3]));
+		}
+		return stack;
+	}
     
     
 }
