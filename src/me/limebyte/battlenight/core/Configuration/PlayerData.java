@@ -27,10 +27,10 @@ public class PlayerData {
     public PlayerData(BattleNight instance) {
         plugin = instance;
     }
-	
-    FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
     
     public void reloadPlayer(Player p) {
+    	
+    	FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
     	
     	// Reload the config
     	plugin.config.reload(ConfigFile.PLAYERS);
@@ -47,6 +47,7 @@ public class PlayerData {
     	
     	// Reload the config
     	plugin.config.reload(ConfigFile.PLAYERS);
+    	FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
     	
     	// Inventory
     	config.set(p.getName() + ".data.inv.main", p.getInventory().getContents());
@@ -97,6 +98,7 @@ public class PlayerData {
     public void restore(Player p) {
     	// Reload the config
     	plugin.config.reload(ConfigFile.PLAYERS);
+    	FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
     	
     	// Inventory
     	p.getInventory().setContents((ItemStack[]) config.get(p.getName() + ".data.inv.main"));
@@ -186,20 +188,24 @@ public class PlayerData {
     }
 
     protected void addKill(Player killer) {
+    	FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
     	config.set(killer.getName() + ".stats.kills", getKills(killer) + 1);
     	plugin.config.save(ConfigFile.PLAYERS);
     }
 
     protected void addDeath(Player victom) {
+    	FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
     	config.set(victom.getName() + ".stats.deaths", getDeaths(victom) + 1);
     	plugin.config.save(ConfigFile.PLAYERS);
     }
 
     public int getKills(Player p) {
+    	FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
         return deObfuscate(config.getString(".stats.kills"));
     }
 
     public int getDeaths(Player p) {
+    	FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
     	return deObfuscate(config.getString(".stats.deaths"));
     }
 

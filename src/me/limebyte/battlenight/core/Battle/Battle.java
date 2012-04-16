@@ -4,8 +4,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import me.limebyte.battlenight.core.BattleNight;
-import me.limebyte.battlenight.core.Configuration.Config;
-import me.limebyte.battlenight.core.Configuration.PlayerData;
 
 /**
  * @author LimeByte.
@@ -16,8 +14,6 @@ public class Battle {
 	
     public Team redTeam = new Team("Red", ChatColor.RED);
     public Team blueTeam = new Team("Blue", ChatColor.BLUE);
-    PlayerData playerData = plugin.getPlayerData();
-    Config config = plugin.config;
     
     Arena[] arenas;
     Player[] players;

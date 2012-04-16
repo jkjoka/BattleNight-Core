@@ -19,11 +19,11 @@ public class BattleNight extends JavaPlugin {
 
     public PluginDescriptionFile pdFile;
     public Logger log;
-    public Battle battle = new Battle(this);
-    public Config config = new Config(this);
-    private PlayerData playerData = new PlayerData(this);
-    public Tracks tracks = new Tracks(this);
-    public Util util = new Util(this);
+    public Config config;
+    private PlayerData playerData;
+    public Tracks tracks;
+    public Util util;
+    public Battle battle;
 
     @Override
     public void onEnable() {
@@ -34,13 +34,16 @@ public class BattleNight extends JavaPlugin {
     	
     	// Register events
     	
-        // Reload configuration files
-        config.reload(Config.ConfigFile.MAIN);
-        config.reload(Config.ConfigFile.CLASSES);
-        config.reload(Config.ConfigFile.TRACKS);
-        config.reload(Config.ConfigFile.WAYPOINTS);
-        config.reload(Config.ConfigFile.PLAYERS);
-
+    	// Configuration
+    	config = new Config(this);
+    	config.enable();
+    	
+        // Link classes
+        playerData = new PlayerData(this);
+        tracks = new Tracks(this);
+        util = new Util(this);
+        battle = new Battle(this);
+        
         // Load command class
         Commands cmdExecutor = new Commands(this);
         getCommand("bn").setExecutor(cmdExecutor);

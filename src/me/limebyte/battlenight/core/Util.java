@@ -1,7 +1,6 @@
 package me.limebyte.battlenight.core;
 
 import me.limebyte.battlenight.core.Battle.Team;
-import me.limebyte.battlenight.core.Configuration.Config;
 import me.limebyte.battlenight.core.Configuration.PlayerData;
 
 import org.bukkit.Bukkit;
@@ -21,8 +20,6 @@ public class Util {
     public Util(BattleNight instance) {
         plugin = instance;
     }
-    
-    Config config = plugin.config;
 	
     public String locationToString(Location loc) {
     	String w = loc.getWorld().getName();
