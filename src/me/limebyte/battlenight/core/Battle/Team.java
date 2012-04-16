@@ -1,5 +1,6 @@
 package me.limebyte.battlenight.core.Battle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.ChatColor;
@@ -19,6 +20,7 @@ public class Team {
 	public Team(String name, ChatColor chatColour) {
 		this.name = name;
 		this.chatColour = chatColour;
+		this.players = new ArrayList<Player>();
 	}
 	
 	public void addPlayer(Player p) {
