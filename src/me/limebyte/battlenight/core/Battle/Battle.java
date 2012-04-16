@@ -1,5 +1,6 @@
 package me.limebyte.battlenight.core.Battle;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import me.limebyte.battlenight.core.BattleNight;
@@ -13,8 +14,8 @@ import me.limebyte.battlenight.core.Configuration.PlayerData;
  */
 public class Battle {
 	
-    Team redTeam = new Team();
-    Team blueTeam = new Team();
+    public Team redTeam = new Team("Red", ChatColor.RED);
+    public Team blueTeam = new Team("Blue", ChatColor.BLUE);
     PlayerData playerData = plugin.getPlayerData();
     Config config = plugin.config;
     
@@ -33,5 +34,11 @@ public class Battle {
     
     public Player[] getPlayers() {
 		return players;
+    }
+    
+    public Team getTeam(Player p) {
+    	if (blueTeam.getPlayers().contains(p)) return blueTeam;
+    	else if (redTeam.getPlayers().contains(p)) return redTeam;
+    	else return null;
     }
 }
