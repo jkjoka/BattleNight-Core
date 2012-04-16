@@ -1,8 +1,10 @@
 package me.limebyte.battlenight.core.Configuration;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import me.limebyte.battlenight.core.BattleNight;
 
@@ -16,51 +18,57 @@ import org.bukkit.configuration.file.YamlConfiguration;
  */
 public class Config {
 
-    // FileConfigurations
-    FileConfiguration main = null;
-    FileConfiguration classes = null;
-    FileConfiguration tracks = null;
-    FileConfiguration waypoints = null;
-    FileConfiguration players = null;
-
     // Files
-    File mainFile = null;
-    File classesFile = null;
-    File tracksFile = null;
-    File waypointsFile = null;
-    File playersFile = null;
+    File mainFile;
+    File classesFile;
+    File tracksFile;
+    File waypointsFile;
+    File playersFile;
 
+    // FileConfigurations
+    FileConfiguration main;
+    FileConfiguration classes;
+    FileConfiguration tracks;
+    FileConfiguration waypoints;
+    FileConfiguration players;
+    
     // Get Main Class
     public static BattleNight plugin;
     public Config(BattleNight instance) {
         plugin = instance;
     }
 
+    public void enable() {
+        // Initialize Files
+        mainFile      = new File(plugin.getDataFolder().getPath(), "Config.yml");
+        classesFile   = new File(plugin.getDataFolder().getPath(), "Classes.yml");
+        tracksFile    = new File(plugin.getDataFolder().getPath(), "Tracks.yml");
+        waypointsFile = new File(plugin.getDataFolder() + "/PluginData", "Waypoints.dat");
+        playersFile   = new File(plugin.getDataFolder() + "/PluginData", "Players.dat");
+        
+        // Use firstRun(); method
+        firstRun();
+        
+        // Initialize FileConfigurations
+        main = new YamlConfiguration();
+        classes = new YamlConfiguration();
+        tracks = new YamlConfiguration();
+        waypoints = new YamlConfiguration();
+        players = new YamlConfiguration();
+        
+        // Load Files
+        reload(ConfigFile.MAIN);
+        reload(ConfigFile.CLASSES);
+        reload(ConfigFile.TRACKS);
+        reload(ConfigFile.WAYPOINTS);
+        reload(ConfigFile.PLAYERS);
+    }
+    
     public enum ConfigFile {
-        MAIN(plugin.getDataFolder().getPath(), "Config.yml"),
-        CLASSES(plugin.getDataFolder().getPath(), "Classes.yml"),
-        TRACKS(plugin.getDataFolder().getPath(), "Tracks.yml"),
-        WAYPOINTS(plugin.getDataFolder() + "/PluginData", "Waypoints.dat"),
-        PLAYERS(plugin.getDataFolder() + "/PluginData", "Players.dat");
-
-        private ConfigFile(String path, String file) {
-            this.p = path;
-            this.f = file;
-        }
-
-        public final String p;
-        public final String f;
-
-        public String getFilePath() {
-            return p;
-        }
-
-        public String getFileName() {
-            return f;
-        }
+        MAIN, CLASSES, TRACKS, WAYPOINTS, PLAYERS;
     }
 
-    private FileConfiguration getFileConfiguration(ConfigFile cf) {
+    private FileConfiguration getFileConfig(ConfigFile cf) {
         switch (cf) {
             case MAIN:
                 return main;
@@ -94,35 +102,61 @@ public class Config {
         }
     }
 
+    private void firstRun() {
+		if (!mainFile.exists()) {
+			mainFile.getParentFile().mkdirs();
+			copy(plugin.getResource("Config.yml"), mainFile);
+		}
+		if (!classesFile.exists()) {
+			classesFile.getParentFile().mkdirs();
+			copy(plugin.getResource("Classes.yml"), classesFile);
+		}
+		if (!tracksFile.exists()) {
+			tracksFile.getParentFile().mkdirs();
+			copy(plugin.getResource("Tracks.yml"), tracksFile);
+		}
+		if (!waypointsFile.exists()) {
+			waypointsFile.getParentFile().mkdirs();
+			copy(plugin.getResource("Waypoints.dat"), waypointsFile);
+		}
+		if (!playersFile.exists()) {
+			playersFile.getParentFile().mkdirs();
+			copy(plugin.getResource("Players.dat"), playersFile);
+		}
+    }
+    
+    private void copy(InputStream in, File file) {
+		try {
+			OutputStream out = new FileOutputStream(file);
+			byte[] buf = new byte[1024];
+			int len;
+			while ((len = in.read(buf)) != -1) {
+				out.write(buf, 0, len);
+			}
+			out.close();
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+    
     public void reload(ConfigFile cf) {
-        FileConfiguration fileConfig = getFileConfiguration(cf);
-        File file = getFile(cf);
-        if (file == null) {
-            file = new File(cf.getFilePath(), cf.getFileName());
-        }
-        fileConfig = YamlConfiguration.loadConfiguration(file);
-
-        // Look for defaults in the jar
-        InputStream defConfigStream = plugin.getResource(cf.getFileName());
-        if (defConfigStream != null) {
-            YamlConfiguration defConfig = YamlConfiguration.loadConfiguration(defConfigStream);
-            fileConfig.setDefaults(defConfig);
-        }
+    	try {
+    		getFileConfig(cf).load(getFile(cf));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
 
     public FileConfiguration get(ConfigFile cf) {
-        if (getFileConfiguration(cf) == null) reload(cf);
-        return (getFileConfiguration(cf));
+        return (getFileConfig(cf));
     }
 
-    public void save(ConfigFile cf) {
-        FileConfiguration fileConfig = getFileConfiguration(cf);
-        File file = getFile(cf);
-        if (fileConfig == null || file == null) reload(cf);
-        try {
-            fileConfig.save(file);
-        } catch (IOException ex) {
-            plugin.log.severe(String.format("Could not save %s config to %s.", cf.toString(), cf.getFileName()));
-        }
+    public void save(ConfigFile file) {
+    	try {
+    		getFileConfig(file).save(getFile(file));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     }
 }
