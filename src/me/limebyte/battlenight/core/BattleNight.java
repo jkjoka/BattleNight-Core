@@ -2,6 +2,7 @@ package me.limebyte.battlenight.core;
 
 import java.util.logging.Logger;
 
+import me.limebyte.battlenight.core.Battle.Battle;
 import me.limebyte.battlenight.core.Configuration.Config;
 import me.limebyte.battlenight.core.Configuration.PlayerData;
 
@@ -18,6 +19,7 @@ public class BattleNight extends JavaPlugin {
 
     public PluginDescriptionFile pdFile;
     public Logger log;
+    public Battle battle = new Battle(this);
     public Config config = new Config(this);
     private PlayerData playerData = new PlayerData(this);
     public Tracks tracks = new Tracks(this);
