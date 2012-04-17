@@ -70,10 +70,12 @@ public class Util {
    }
    
    ////////////////////
-   //   Inventory    //
+   // PlayerListName //
    ////////////////////
    
-
-    
+   public void setPlayerListName(Player p, Team t) {
+	   String pListName = "§7[BN] " + p.getName();
+	   p.setPlayerListName((pListName.length() < 16) ? pListName : pListName.substring(0, 16));
+   }
     
 }

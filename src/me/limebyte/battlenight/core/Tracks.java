@@ -20,9 +20,9 @@ public class Tracks {
     private static final String prefix = ChatColor.GRAY + "[BattleNight] " + ChatColor.WHITE;
 
     public enum Track {
-	    NO_PERMISSION("Commands.NoPermission"),
-	    PLAYER_ONLY("Commands.PlayerOnly"),
-	    PLAYER_NOT_FOUND("Commands.PlayerNotFound");
+	    NO_PERMISSION			("Commands.NoPermission"),
+	    PLAYER_ONLY				("Commands.PlayerOnly"),
+	    PLAYER_NOT_FOUND		("Commands.PlayerNotFound");
 
         private Track(String configPath) {
             this.cp = configPath;
@@ -33,9 +33,9 @@ public class Tracks {
             return prefix + plugin.config.get(Config.ConfigFile.TRACKS).getString(cp).replaceAll("&([a-f0-9])", "\u00A7$1");
         }
         
-        public String getMessage(String[] args) {
-        	return prefix + plugin.config.get(Config.ConfigFile.TRACKS).getString(cp).replaceAll("[arg([0-9])]", args[Integer.parseInt("$1")])
-        																			 .replaceAll("&([a-f0-9])", "\u00A7$1");
+        public String getMessage(String... args) {
+        	String track = plugin.config.get(Config.ConfigFile.TRACKS).getString(cp).replaceAll("<arg([0-9])>", args[Integer.parseInt("$1")]);
+        	return prefix + ChatColor.translateAlternateColorCodes('&', track);
         }
     }
 }

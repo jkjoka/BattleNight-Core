@@ -103,8 +103,8 @@ public class PlayerData {
     	FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
     	
     	// Inventory
-    	p.getInventory().setContents(config.getList(p.getName() + ".data.inv.main").toArray(new ItemStack[p.getInventory().getContents().length]));
-    	p.getInventory().setArmorContents(config.getList(p.getName() + ".data.inv.armor").toArray(new ItemStack[p.getInventory().getArmorContents().length]));
+    	p.getInventory().setContents(config.getList(p.getName() + ".data.inv.main").toArray(new ItemStack[0]));
+    	p.getInventory().setArmorContents(config.getList(p.getName() + ".data.inv.armor").toArray(new ItemStack[0]));
     	
     	// Health
     	p.setHealth(config.getInt(p.getName() + ".data.health"));
@@ -146,47 +146,25 @@ public class PlayerData {
     }
     
     public void reset(Player p, Team t, Location destination) {
-    	// Inventory
     	p.getInventory().clear();
-    	
-    	// Health
     	p.setHealth(p.getMaxHealth());
-    	
-    	// Hunger
     	p.setFoodLevel(16);
     	p.setSaturation(1000);
     	p.setExhaustion(0);
-    	
-    	// Experience
     	p.setLevel(0);
     	p.setExp(0);
-    	
-    	// GameMode
     	p.setGameMode(GameMode.SURVIVAL);
-    	
-    	// Flying
     	p.setAllowFlight(false);
     	p.setFlying(false);
-    	
-    	// Locations
     	p.teleport(destination, TeleportCause.PLUGIN);
-    	
-    	// Sleep
     	p.setSleepingIgnored(true);
-    	
-    	// Information
-    	String displayName = ChatColor.GRAY+"[BN] " + t.getChatColor()+"["+t.getName().substring(0, 1)+"] " + ChatColor.WHITE + p.getName();
-    	p.setDisplayName(displayName);
-    	p.setPlayerListName((displayName.length() < 16) ? displayName : displayName.substring(0, 16));
-    	
-    	// Statistics
+    	p.setDisplayName(ChatColor.GRAY + "[BN] " + t.getChatColor() + p.getName() + ChatColor.RESET);
+    	plugin.util.setPlayerListName(p, t);
     	p.setTicksLived(1);
     	p.setNoDamageTicks(0);
-    	
-    	// State
-    	//TODO p.setRemainingAir(12345);
-    	p.setFallDistance(0);
-    	p.setFireTicks(0);
+    	p.setRemainingAir(300);
+    	p.setFallDistance(0.0f);
+    	p.setFireTicks(-20);
     }
 
     protected void addKill(Player killer) {

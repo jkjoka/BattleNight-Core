@@ -2,8 +2,9 @@
 # Tracks File
 #
 # Remember to use spaces not tabs.
+# Colour codes: http://www.minecraftwiki.net/wiki/Classic_server_protocol#Color_Codes
 
 Commands:
-    NoPermission: You do not have permission to perform this command.
-    PlayerOnly: This command can only be run by a Player.
-    PlayerNotFound: The player '[arg0]' was not found.
+    NoPermission:       '&4You do not have permission to perform this command.'
+    PlayerOnly:         '&4This command can only be run by a Player.'
+    PlayerNotFound:     '&4The player "<arg0>" was not found.'                        # <arg0> = player name
