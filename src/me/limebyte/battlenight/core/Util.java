@@ -1,18 +1,12 @@
 package me.limebyte.battlenight.core;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-
 import me.limebyte.battlenight.core.Battle.Team;
 import me.limebyte.battlenight.core.Configuration.PlayerData;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 
 /**
  * @author LimeByte.
