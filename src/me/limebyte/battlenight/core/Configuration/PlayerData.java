@@ -103,8 +103,8 @@ public class PlayerData {
     	FileConfiguration config = plugin.config.get(ConfigFile.PLAYERS);
     	
     	// Inventory
-    	p.getInventory().setContents((ItemStack[]) config.getList(p.getName() + ".data.inv.main").toArray());
-    	p.getInventory().setArmorContents((ItemStack[]) config.getList(p.getName() + ".data.inv.armor").toArray());
+    	p.getInventory().setContents(config.getList(p.getName() + ".data.inv.main").toArray(new ItemStack[p.getInventory().getContents().length]));
+    	p.getInventory().setArmorContents(config.getList(p.getName() + ".data.inv.armor").toArray(new ItemStack[p.getInventory().getArmorContents().length]));
     	
     	// Health
     	p.setHealth(config.getInt(p.getName() + ".data.health"));
