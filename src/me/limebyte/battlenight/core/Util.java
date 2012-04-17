@@ -23,23 +23,19 @@ public class Util {
 	
     public String locationToString(Location loc) {
     	String w = loc.getWorld().getName();
-    	String x = Double.toString(loc.getX());
-    	String y = Double.toString(loc.getY());
-    	String z = Double.toString(loc.getZ());
-    	String yaw = Float.toString(loc.getYaw());
-    	String pitch = Float.toString(loc.getPitch());
-    	return w + "|" + x + "|" + y + "|" + z + "|" + yaw + "|" + pitch;
+    	double x = loc.getBlockX() + 0.5;
+    	int y = loc.getBlockY();
+    	double z = loc.getBlockZ() + 0.5;
+    	return w + "," + x + "," + y + "," + z;
     }
     
     public Location locationFromString(String s) {
-    	String part[] = s.split("|");
+    	String part[] = s.split(",");
     	World w = Bukkit.getServer().getWorld(part[0]);
     	double x = Double.parseDouble(part[1]);
-    	double y = Double.parseDouble(part[2]);
+    	int y = Integer.parseInt(part[2]);
     	double z = Double.parseDouble(part[3]);
-    	float yaw = Float.parseFloat(part[4]);
-    	float pitch = Float.parseFloat(part[5]);
-    	return new Location(w, x, y, z, yaw, pitch);
+    	return new Location(w, x, y, z);
     }
 	
     
