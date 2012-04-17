@@ -60,12 +60,12 @@ public class PlayerData {
     	
     	// Hunger
     	config.set(p.getName() + ".data.hunger.foodlevel", p.getFoodLevel());
-    	config.set(p.getName() + ".data.hunger.saturation", p.getSaturation());
-    	config.set(p.getName() + ".data.hunger.exhaustion", p.getExhaustion());
+    	config.set(p.getName() + ".data.hunger.saturation", Float.toString(p.getSaturation()));
+    	config.set(p.getName() + ".data.hunger.exhaustion", Float.toString(p.getExhaustion()));
     	
     	// Experience
     	config.set(p.getName() + ".data.exp.level", p.getLevel());
-    	config.set(p.getName() + ".data.exp.ammount", p.getExp());
+    	config.set(p.getName() + ".data.exp.ammount", Float.toString(p.getExp()));
     	
     	// GameMode
     	config.set(p.getName() + ".data.gamemode", p.getGameMode().getValue());
@@ -90,7 +90,7 @@ public class PlayerData {
     	
     	// State
     	config.set(p.getName() + ".data.state.remainingair", p.getRemainingAir());
-    	config.set(p.getName() + ".data.state.falldistance", p.getFallDistance());
+    	config.set(p.getName() + ".data.state.falldistance", Float.toString(p.getFallDistance()));
     	config.set(p.getName() + ".data.state.fireticks", p.getFireTicks());
     	
     	// Save it all
@@ -111,12 +111,12 @@ public class PlayerData {
     	
     	// Hunger
     	p.setFoodLevel(config.getInt(p.getName() + ".data.hunger.foodlevel"));
-    	p.setSaturation((Float) config.get(p.getName() + ".data.hunger.saturation"));
-    	p.setExhaustion((Float) config.get(p.getName() + ".data.hunger.exhaustion"));
+    	p.setSaturation(Float.parseFloat(config.getString(p.getName() + ".data.hunger.saturation")));
+    	p.setExhaustion(Float.parseFloat(config.getString(p.getName() + ".data.hunger.exhaustion")));
     	
     	// Experience
     	p.setLevel(config.getInt(p.getName() + ".data.exp.level"));
-    	p.setExp((Float) config.get(p.getName() + ".data.exp.ammount"));
+    	p.setExp(Float.parseFloat(config.getString(p.getName() + ".data.exp.ammount")));
     	
     	// GameMode
     	p.setGameMode(GameMode.getByValue(config.getInt(p.getName() + ".data.gamemode")));
@@ -141,7 +141,7 @@ public class PlayerData {
     	
     	// State
     	p.setRemainingAir(config.getInt(p.getName() + ".data.state.remainingair"));
-    	p.setFallDistance((Float) config.get(p.getName() + ".data.state.falldistance"));
+    	p.setFallDistance(Float.parseFloat(config.getString(p.getName() + ".data.state.falldistance")));
     	p.setFireTicks(config.getInt(p.getName() + ".data.state.fireticks"));
     }
     
