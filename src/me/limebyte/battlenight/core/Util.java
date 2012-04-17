@@ -23,11 +23,11 @@ public class Util {
 	
     public String locationToString(Location loc) {
     	String w = loc.getWorld().getName();
-    	double x = loc.getX();
-    	double y = loc.getY();
-    	double z = loc.getZ();
-    	float yaw = loc.getYaw();
-    	float pitch = loc.getPitch();
+    	String x = Double.toString(loc.getX());
+    	String y = Double.toString(loc.getY());
+    	String z = Double.toString(loc.getZ());
+    	String yaw = Float.toString(loc.getYaw());
+    	String pitch = Float.toString(loc.getPitch());
     	return w + "|" + x + "|" + y + "|" + z + "|" + yaw + "|" + pitch;
     }
     
