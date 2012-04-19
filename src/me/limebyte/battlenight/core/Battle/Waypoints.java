@@ -4,7 +4,6 @@ import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Configuration.Config;
 
 import org.bukkit.Location;
-import org.bukkit.World;
 
 /**
  * @author LimeByte.
@@ -14,41 +13,30 @@ import org.bukkit.World;
 public class Waypoints {
 
     Arena arena;
-    Config.ConfigFile file = Config.ConfigFile.WAYPOINTS;
+    Config.ConfigFile configFile = Config.ConfigFile.WAYPOINTS;
 
     // Get Main Class
     public static BattleNight plugin;
 
-    public Waypoints(BattleNight instance) {
+    public Waypoints(BattleNight instance, Arena a) {
         plugin = instance;
-    }
-
-    Waypoints(Arena a) {
         arena = a;
     }
 
-    public void setLocation(Waypoint wp, Location l) {
-        String location = l.getWorld().getName() + "|"
-                + l.getX() + "|"
-                + l.getY() + "|"
-                + l.getZ() + "|"
-                + l.getYaw() + "|"
-                + l.getPitch();
-        plugin.config.get(file).set(arena.getName()+"."+wp.getName(wp), location);
-        plugin.config.save(file);
+    public void setLocation(Waypoint wp, Location loc) {
+        String location = plugin.util.locationToString(loc);
+        plugin.config.get(configFile).set(arena.getName()+"."+wp.getName(wp), location);
+        
+        // Save the configuration
+        plugin.config.save(configFile);
     }
 
     public Location getLocation(Waypoint wp) {
-        plugin.config.reload(file);
-        String location = plugin.config.get(file).getString(arena.getName()+"."+wp.getName(wp));
-        String[] locationParts = location.split("|");
-        World world = plugin.getServer().getWorld(locationParts[0]);
-        double x = Double.valueOf(locationParts[1]);
-        double y = Double.valueOf(locationParts[2]);
-        double z = Double.valueOf(locationParts[3]);
-        float yaw = Float.valueOf(locationParts[4]);
-        float pitch = Float.valueOf(locationParts[5]);
-        return new Location(world, x, y, z, yaw, pitch);
+        // Reload the configuration
+        plugin.config.reload(configFile);
+        
+        String loc = plugin.config.get(configFile).getString(arena.getName()+"."+wp.getName(wp));
+        return plugin.util.locationFromString(loc);
     }
 
     public boolean isSet(Waypoint wp) {
@@ -59,7 +47,8 @@ public class Waypoints {
         BLUELOUNGE,
         REDLOUNGE,
         BLUESPAWN,
-        REDSPAWN;
+        REDSPAWN,
+        EXIT;
         
         public String getName(Waypoint wp) {
             return wp.toString().toLowerCase();
