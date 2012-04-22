@@ -1,42 +1,55 @@
 package me.limebyte.battlenight.core.Battle;
 
+import me.limebyte.battlenight.core.BattleNight;
+
 /**
  * @author LimeByte.
  * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
 public class Arena {
-    Waypoints waypoints = new Waypoints(this);
-    String name;
+    private String name;
+    private Waypoints waypoints = new Waypoints(plugin, this);
+    private boolean inUse = false;
 
-    public Arena(String arenaName) {
-        name = arenaName;
+    // Get Main Class
+    public static BattleNight plugin;
+    
+    /**
+     * Create a new arena by specifying the instance of
+     * BattleNight and the name for this Arena.
+     */
+    public Arena(BattleNight instance, String name) {
+        plugin = instance;
+        this.name = name;
     }
 
-    /**
-     * Get the name of the Arena
-     * @return Name of the Arena
-     */
+    
     public String getName() {
         return name;
     }
 
-    /**
-     * Get the waypoints for the arena
-     * @return Waypoints
-     */
     public Waypoints getWaypoints() {
         return waypoints;
     }
 
-    /**
-     * Checks if all waypoints are set
-     * @return True if setup
-     */
+    public boolean isInUse() {
+        return inUse;
+    }
+    
     public boolean isSetup() {
         for(Waypoints.Waypoint w : Waypoints.Waypoint.values()) {
             if(!waypoints.isSet(w)) return false;
         }
         return true;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setInUse(boolean inUse) {
+        this.inUse = inUse;
+    }
+
 }
