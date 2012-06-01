@@ -13,8 +13,8 @@ import me.limebyte.battlenight.core.BattleNight;
  */
 public class Battle {
 	
-    public Team redTeam = new Team("Red", ChatColor.RED, DyeColor.RED);
-    public Team blueTeam = new Team("Blue", ChatColor.AQUA, DyeColor.LIGHT_BLUE);
+    public Team teamA = new Team("Red", ChatColor.RED, DyeColor.RED);
+    public Team teamB = new Team("Blue", ChatColor.AQUA, DyeColor.LIGHT_BLUE);
     
     Arena[] arenas;
     Player[] players;
@@ -34,8 +34,8 @@ public class Battle {
     }
     
     public Team getTeam(Player p) {
-    	if (blueTeam.getPlayers().contains(p)) return blueTeam;
-    	else if (redTeam.getPlayers().contains(p)) return redTeam;
+    	if (teamA.getPlayers().contains(p)) return teamA;
+    	else if (teamB.getPlayers().contains(p)) return teamB;
     	else return null;
     }
 }

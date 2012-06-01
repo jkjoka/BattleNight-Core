@@ -15,8 +15,8 @@ public class Arena {
     
     private String name;
     private String displayName;
-    private Waypoint redSpawn = new Waypoint(WaypointType.REDSPAWN, this);
-    private Waypoint blueSpawn = new Waypoint(WaypointType.BLUESPAWN, this);
+    private Waypoint aSpawn = new Waypoint(WaypointType.ASPAWN, this);
+    private Waypoint bSpawn = new Waypoint(WaypointType.BSPAWN, this);
     private boolean enabled = true;
     
     ////////////////////
@@ -55,7 +55,7 @@ public class Arena {
      * @return the current red spawn location.
      */
     public Location getRedSpawn() {
-        return redSpawn.getLocation();
+        return aSpawn.getLocation();
     }
 
     /**
@@ -63,7 +63,7 @@ public class Arena {
      * @return the current blue spawn location.
      */
     public Location getBlueSpawn() {
-        return blueSpawn.getLocation();
+        return bSpawn.getLocation();
     }
     
 
@@ -84,7 +84,7 @@ public class Arena {
      * @param the new red spawn location.
      */
     public void setRedSpawn(Location location) {
-        redSpawn.setLocation(location);
+        aSpawn.setLocation(location);
     }
 
     /**
@@ -92,7 +92,7 @@ public class Arena {
      * @param the new blue spawn location.
      */
     public void setBlueSpawn(Location location) {
-        blueSpawn.setLocation(location);
+        bSpawn.setLocation(location);
     }
     
     /**
@@ -118,7 +118,7 @@ public class Arena {
      * @return whether it is setup.
      */
     public boolean isSetup() {
-        return (redSpawn.isSet() && blueSpawn.isSet());
+        return (aSpawn.isSet() && bSpawn.isSet());
     }
     
     /**

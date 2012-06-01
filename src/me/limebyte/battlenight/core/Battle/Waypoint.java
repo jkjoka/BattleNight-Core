@@ -84,10 +84,10 @@ public class Waypoint {
     }
 
     public enum WaypointType {
-        BLUELOUNGE,
-        REDLOUNGE,
-        BLUESPAWN,
-        REDSPAWN,
+        ALOUNGE,
+        BLOUNGE,
+        ASPAWN,
+        BSPAWN,
         EXIT;
         
         public String getName() {

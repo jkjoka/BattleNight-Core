@@ -92,4 +92,12 @@ public class Team {
 	public List<Player> getPlayers() {
 		return players;
 	}
+	
+    /**
+     * Gets the amount of Players in the Team.
+     * @return the number of players.
+     */
+    public int getPlayerAmount() {
+        return players.size();
+    }
 }
