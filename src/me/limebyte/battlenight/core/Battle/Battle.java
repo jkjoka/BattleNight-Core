@@ -1,6 +1,7 @@
 package me.limebyte.battlenight.core.Battle;
 
 import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.entity.Player;
 
 import me.limebyte.battlenight.core.BattleNight;
@@ -12,8 +13,8 @@ import me.limebyte.battlenight.core.BattleNight;
  */
 public class Battle {
 	
-    public Team redTeam = new Team("Red", ChatColor.RED);
-    public Team blueTeam = new Team("Blue", ChatColor.BLUE);
+    public Team redTeam = new Team("Red", ChatColor.RED, DyeColor.RED);
+    public Team blueTeam = new Team("Blue", ChatColor.AQUA, DyeColor.LIGHT_BLUE);
     
     Arena[] arenas;
     Player[] players;
