@@ -36,7 +36,7 @@ public class Arena {
     
     /**
      * Gets the name of this Arena.
-     * @return the current name
+     * @return the current name.
      */
     public String getName() {
         return name;
@@ -44,7 +44,7 @@ public class Arena {
 
     /**
      * Gets the "friendly" name of the Arena.
-     * @return the current display name
+     * @return the current display name.
      */
     public String getDisplayName() {
         return displayName;
@@ -52,7 +52,7 @@ public class Arena {
 
     /**
      * Gets the Arena's Location for the red team to spawn.
-     * @return the current red spawn location
+     * @return the current red spawn location.
      */
     public Location getRedSpawn() {
         return redSpawn.getLocation();
@@ -60,7 +60,7 @@ public class Arena {
 
     /**
      * Gets the Arena's Location for the blue team to spawn.
-     * @return the current blue spawn location
+     * @return the current blue spawn location.
      */
     public Location getBlueSpawn() {
         return blueSpawn.getLocation();
@@ -73,7 +73,7 @@ public class Arena {
     
     /**
      * Sets the "friendly" name of the Arena.
-     * @param the new display name
+     * @param the new display name.
      */
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
@@ -81,7 +81,7 @@ public class Arena {
 
     /**
      * Sets the Arena's Location for the red team to spawn.
-     * @param the new red spawn location
+     * @param the new red spawn location.
      */
     public void setRedSpawn(Location location) {
         redSpawn.setLocation(location);
@@ -89,7 +89,7 @@ public class Arena {
 
     /**
      * Sets the Arena's Location for the blue team to spawn.
-     * @param the new blue spawn location
+     * @param the new blue spawn location.
      */
     public void setBlueSpawn(Location location) {
         blueSpawn.setLocation(location);
@@ -115,7 +115,7 @@ public class Arena {
     
     /**
      * Checks if the Arena is setup.
-     * @return whether it is setup
+     * @return whether it is setup.
      */
     public boolean isSetup() {
         return (redSpawn.isSet() && blueSpawn.isSet());
@@ -123,7 +123,7 @@ public class Arena {
     
     /**
      * Checks if the Arena is enabled.
-     * @return whether it is enabled
+     * @return whether it is enabled.
      */
     public boolean isEnabled() {
         return enabled;
