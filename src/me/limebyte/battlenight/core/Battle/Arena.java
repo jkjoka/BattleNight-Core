@@ -2,7 +2,6 @@ package me.limebyte.battlenight.core.Battle;
 
 import org.bukkit.Location;
 
-import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Battle.Waypoint.WaypointType;
 
 /**
@@ -19,12 +18,6 @@ public class Arena {
     private Waypoint redSpawn = new Waypoint(WaypointType.REDSPAWN, this);
     private Waypoint blueSpawn = new Waypoint(WaypointType.BLUESPAWN, this);
     private boolean enabled = true;
-
-    // Get Main Class
-    public static BattleNight plugin;
-    public Arena(BattleNight instance) {
-        plugin = instance;
-    }
     
     ////////////////////
     //  Constructors  //
@@ -34,7 +27,7 @@ public class Arena {
      * Create a new arena by specifying the name for this Arena.
      */
     public Arena(String name) {
-        name = this.name;
+        this.name = name;
     }
 
     ////////////////////
