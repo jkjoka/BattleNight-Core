@@ -19,8 +19,7 @@ import org.bukkit.inventory.ItemStack;
 public class Team {
 	
 	private String name;
-	private ChatColor chatColor;
-	private DyeColor headBlockColor;
+	private TeamColor teamColor;
 	private List<Player> players;
 	
     ////////////////////
@@ -28,12 +27,12 @@ public class Team {
     ////////////////////
 	
     /**
-     * Create a new team by specifying the name, chat color and the head block color for this Team.
+     * Create a new team by specifying the name and the color for this Team.
+     * @param the name and the color for the team
      */
-	public Team(String name, ChatColor chatColour, DyeColor headBlockColor) {
+	public Team(String name, TeamColor teamColor) {
 		this.name = name;
-		this.chatColor = chatColour;
-		this.headBlockColor = headBlockColor;
+		this.teamColor = teamColor;
 		this.players = new ArrayList<Player>();
 	}
 	
@@ -74,7 +73,7 @@ public class Team {
      * @return the current chat color.
      */
 	public ChatColor getChatColor() {
-		return chatColor;
+		return teamColor.getChatColor();
 	}
 
     /**
@@ -82,7 +81,7 @@ public class Team {
      * @return the current head block.
      */
 	public ItemStack getHeadBlock() {
-	    return new ItemStack(Material.WOOL, 1, (short)0, headBlockColor.getData());
+	    return teamColor.getHeadBlock();
 	}
 	
     /**
@@ -100,4 +99,42 @@ public class Team {
     public int getPlayerAmount() {
         return players.size();
     }
+    
+    ////////////////////
+    //  Enumerators   //
+    ////////////////////
+    
+    public enum TeamColor {
+        
+        ORANGE      (ChatColor.GOLD, DyeColor.ORANGE),
+        AQUA        (ChatColor.AQUA, DyeColor.LIGHT_BLUE),
+        YELLOW      (ChatColor.YELLOW, DyeColor.YELLOW),
+        LIME        (ChatColor.GREEN, DyeColor.LIME),
+        PINK        (ChatColor.LIGHT_PURPLE, DyeColor.PINK),
+        SILVER      (ChatColor.GRAY, DyeColor.SILVER),
+        CYAN        (ChatColor.DARK_AQUA, DyeColor.CYAN),
+        PURPLE      (ChatColor.DARK_PURPLE, DyeColor.PURPLE),
+        BLUE        (ChatColor.BLUE, DyeColor.BLUE),
+        GREEN       (ChatColor.DARK_GREEN, DyeColor.GREEN),
+        RED         (ChatColor.RED, DyeColor.RED);
+        
+        private final ChatColor chatColor;
+        private final DyeColor headColor;
+        
+        private TeamColor(ChatColor chatColor, DyeColor headColor) {
+            this.chatColor = chatColor;
+            this.headColor = headColor;
+        }
+        
+        public ChatColor getChatColor() {
+            return chatColor;
+        }
+        
+        public ItemStack getHeadBlock() {
+            return new ItemStack(Material.WOOL, 1, (short)0, headColor.getData());
+        }
+        
+    }
+    
+    
 }
