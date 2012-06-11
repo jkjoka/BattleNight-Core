@@ -7,7 +7,7 @@ import me.limebyte.battlenight.core.Battle.Waypoint.WaypointType;
 /**
  * Represents a Arena.
  * 
- * @author LimeByte.
+ * @author LimeByte
  * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
@@ -24,7 +24,9 @@ public class Arena {
     ////////////////////
     
     /**
-     * Create a new arena by specifying the name for this Arena.
+     * Constructs a new BattleNight Arena.
+     * 
+     * @param name The simple name.
      */
     public Arena(String name) {
         this.name = name;
@@ -35,34 +37,38 @@ public class Arena {
     ////////////////////
     
     /**
-     * Gets the name of this Arena.
-     * @return the current name.
+     * Gets the simple name for the Arena.
+     * 
+     * @return The simple name.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Gets the "friendly" name of the Arena.
-     * @return the current display name.
+     * Gets the "friendly" name for the Arena.
+     * 
+     * @return The current display name.
      */
     public String getDisplayName() {
         return displayName;
     }
 
     /**
-     * Gets the Arena's Location for the red team to spawn.
-     * @return the current red spawn location.
+     * Gets the {@link Location} for the A {@link Team} to spawn in the Arena.
+     * 
+     * @return The current A team spawn location.
      */
-    public Location getRedSpawn() {
+    public Location getASpawn() {
         return aSpawn.getLocation();
     }
 
     /**
-     * Gets the Arena's Location for the blue team to spawn.
-     * @return the current blue spawn location.
+     * Gets the {@link Location} for the B {@link Team} to spawn in the Arena.
+     * 
+     * @return The current B team spawn location.
      */
-    public Location getBlueSpawn() {
+    public Location getBSpawn() {
         return bSpawn.getLocation();
     }
     
@@ -72,26 +78,29 @@ public class Arena {
     ////////////////////
     
     /**
-     * Sets the "friendly" name of the Arena.
-     * @param the new display name.
+     * Sets the "friendly" name for the Arena.
+     * 
+     * @param The new display name.
      */
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
 
     /**
-     * Sets the Arena's Location for the red team to spawn.
-     * @param the new red spawn location.
+     * Sets the {@link Location} for the A {@link Team} to spawn in the Arena.
+     * 
+     * @param The new A team spawn location.
      */
-    public void setRedSpawn(Location location) {
+    public void setASpawn(Location location) {
         aSpawn.setLocation(location);
     }
 
     /**
-     * Sets the Arena's Location for the blue team to spawn.
-     * @param the new blue spawn location.
+     * Sets the {@link Location} for the B {@link Team} to spawn in the Arena.
+     * 
+     * @param The new B team spawn location.
      */
-    public void setBlueSpawn(Location location) {
+    public void setBSpawn(Location location) {
         bSpawn.setLocation(location);
     }
     
@@ -115,7 +124,8 @@ public class Arena {
     
     /**
      * Checks if the Arena is setup.
-     * @return whether it is setup.
+     * 
+     * @return Whether it is setup.
      */
     public boolean isSetup() {
         return (aSpawn.isSet() && bSpawn.isSet());
@@ -123,7 +133,8 @@ public class Arena {
     
     /**
      * Checks if the Arena is enabled.
-     * @return whether it is enabled.
+     * 
+     * @return Whether it is enabled.
      */
     public boolean isEnabled() {
         return enabled;
