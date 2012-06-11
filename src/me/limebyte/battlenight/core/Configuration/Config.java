@@ -12,6 +12,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 /**
+ * Represents the configuration manager.
+ * 
  * @author LimeByte.
  * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
@@ -57,11 +59,10 @@ public class Config {
         players = new YamlConfiguration();
         
         // Load Files
-        reload(ConfigFile.MAIN);
-        reload(ConfigFile.CLASSES);
-        reload(ConfigFile.TRACKS);
-        reload(ConfigFile.WAYPOINTS);
-        reload(ConfigFile.PLAYERS);
+        for (ConfigFile file : ConfigFile.values()) {
+            reload(file);
+        }
+        
     }
     
     public enum ConfigFile {
