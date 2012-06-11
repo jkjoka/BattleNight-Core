@@ -50,12 +50,12 @@ public class Waypoint {
     
     public Location getLocation() {
         // Reload the configuration
-        plugin.config.reload(configFile);
+        plugin.getConfigManager().reload(configFile);
         
         // Get the location String
         String loc;
-        if (arena != null) loc = plugin.config.get(configFile).getString(arena.getName()+"."+type.getName());
-        else loc = plugin.config.get(configFile).getString("general."+type.getName());
+        if (arena != null) loc = plugin.getConfigManager().get(configFile).getString(arena.getName()+"."+type.getName());
+        else loc = plugin.getConfigManager().get(configFile).getString("general."+type.getName());
         
         // Convert it to a Location
         return plugin.util.locationFromString(loc);
@@ -68,11 +68,11 @@ public class Waypoint {
     public void setLocation(Location location) {
         // Convert it to a String
         String loc = plugin.util.locationToString(location);
-        if (arena != null) plugin.config.get(configFile).set(arena+"."+type.getName(), loc);
-        else plugin.config.get(configFile).set("general."+type.getName(), loc);
+        if (arena != null) plugin.getConfigManager().get(configFile).set(arena+"."+type.getName(), loc);
+        else plugin.getConfigManager().get(configFile).set("general."+type.getName(), loc);
         
         // Save the configuration
-        plugin.config.save(configFile);
+        plugin.getConfigManager().save(configFile);
     }
 
     ////////////////////

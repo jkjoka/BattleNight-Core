@@ -30,11 +30,12 @@ public class Tracks {
         private String cp;
 
         public String getMessage() {
-            return prefix + plugin.config.get(Config.ConfigFile.TRACKS).getString(cp).replaceAll("&([a-f0-9])", "\u00A7$1");
+            String track = plugin.getConfigManager().get(Config.ConfigFile.TRACKS).getString(cp);
+            return prefix + ChatColor.translateAlternateColorCodes('&', track);
         }
         
         public String getMessage(String... args) {
-        	String track = plugin.config.get(Config.ConfigFile.TRACKS).getString(cp).replaceAll("<arg([0-9])>", args[Integer.parseInt("$1")]);
+        	String track = plugin.getConfigManager().get(Config.ConfigFile.TRACKS).getString(cp).replaceAll("<arg([0-9])>", args[Integer.parseInt("$1")]);
         	return prefix + ChatColor.translateAlternateColorCodes('&', track);
         }
     }

@@ -6,6 +6,7 @@ import me.limebyte.battlenight.core.Battle.Battle;
 import me.limebyte.battlenight.core.Configuration.Config;
 import me.limebyte.battlenight.core.Configuration.PlayerData;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,7 +20,7 @@ public class BattleNight extends JavaPlugin {
 
     public PluginDescriptionFile pdFile;
     public Logger log;
-    public Config config;
+    private Config config;
     private PlayerData playerData;
     public Tracks tracks;
     public Util util;
@@ -57,6 +58,15 @@ public class BattleNight extends JavaPlugin {
     public void onDisable() {
         // Print disable message to the console
         log.info("Version " + pdFile.getVersion() + " disabled.");
+    }
+    
+    @Override @Deprecated
+    public FileConfiguration getConfig() {
+        return null;
+    }
+    
+    public Config getConfigManager() {
+        return config;
     }
     
     public PlayerData getPlayerData() {
