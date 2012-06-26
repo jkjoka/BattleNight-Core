@@ -23,15 +23,11 @@ public class Commands implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] arg) {
     	
     	if (arg[0].equalsIgnoreCase("join") && Allowed(sender, "user", false)) {
-	    		Player player = (Player) sender;
-	    		plugin.battle.teamA.addPlayer(player);
-	    		plugin.util.preparePlayer(player, plugin.battle.getTeam(player), player.getLocation());
+	    	//Player player = (Player) sender;
     	}
     	
     	else if (arg[0].equalsIgnoreCase("leave") && Allowed(sender, "user", false)) {
-    		Player player = (Player) sender;
-    		plugin.util.restorePlayer(player, plugin.battle.getTeam(player), player.getLocation());
-    		plugin.battle.getTeam(player).removePlayer(player);
+    		//Player player = (Player) sender;
     	}
     	
     	else if (arg[0].equalsIgnoreCase("find") && Allowed(sender, "user", true)) {
