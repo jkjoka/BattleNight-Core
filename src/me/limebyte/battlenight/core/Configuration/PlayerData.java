@@ -167,13 +167,13 @@ public class PlayerData {
     	p.setFireTicks(-20);
     }
 
-    protected void addKill(Player killer) {
+    public void addKill(Player killer) {
     	FileConfiguration config = plugin.getConfigManager().get(ConfigFile.PLAYERS);
     	config.set(killer.getName() + ".stats.kills", getKills(killer) + 1);
     	plugin.getConfigManager().save(ConfigFile.PLAYERS);
     }
 
-    protected void addDeath(Player victom) {
+    public void addDeath(Player victom) {
     	FileConfiguration config = plugin.getConfigManager().get(ConfigFile.PLAYERS);
     	config.set(victom.getName() + ".stats.deaths", getDeaths(victom) + 1);
     	plugin.getConfigManager().save(ConfigFile.PLAYERS);
