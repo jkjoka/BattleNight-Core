@@ -41,6 +41,14 @@ public class Battle {
         if (this.isInProgress()) throw new BattleInProgressException();
     }
     
+    public boolean containsPlayer(Player player) {
+    	for (Player p : players) {
+    		if (player == p) return true;
+    	}
+    	
+    	return false;
+    }
+    
     ////////////////////
     //    Getters     //
     ////////////////////
