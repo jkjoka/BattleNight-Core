@@ -24,7 +24,7 @@ public class BattleNight extends JavaPlugin {
     private PlayerData playerData;
     public Tracks tracks;
     public Util util;
-    public Battle battle;
+    private Battle battle;
 
     @Override
     public void onEnable() {
@@ -71,6 +71,10 @@ public class BattleNight extends JavaPlugin {
     
     public PlayerData getPlayerData() {
     	return playerData;
+    }
+    
+    public Battle getBattle() {
+    	return battle;
     }
 
 }
