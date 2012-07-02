@@ -20,9 +20,9 @@ public class Tracks {
     private static final String prefix = ChatColor.GRAY + "[BattleNight] " + ChatColor.WHITE;
 
     public enum Track {
-	    NO_PERMISSION			("Commands.NoPermission"),
-	    PLAYER_ONLY				("Commands.PlayerOnly"),
-	    PLAYER_NOT_FOUND		("Commands.PlayerNotFound");
+	    NO_PERMISSION			("en.Commands.NoPermission"),
+	    PLAYER_ONLY				("en.Commands.PlayerOnly"),
+	    PLAYER_NOT_FOUND		("en.Commands.PlayerNotFound");
 
         private Track(String configPath) {
             this.cp = configPath;
