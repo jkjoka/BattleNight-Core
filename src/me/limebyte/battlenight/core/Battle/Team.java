@@ -18,7 +18,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class Team {
 	
-	private String name;
+	private final String name;
 	private TeamColor teamColor;
 	private List<Player> players;
 	
