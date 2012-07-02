@@ -19,7 +19,7 @@ import org.bukkit.inventory.ItemStack;
 public class Team {
 	
 	private final String name;
-	private TeamColor teamColor;
+	private TeamColour teamColour;
 	private List<Player> players;
 	
     ////////////////////
@@ -30,9 +30,9 @@ public class Team {
      * Create a new team by specifying the name and the color for this Team.
      * @param the name and the color for the team
      */
-	public Team(String name, TeamColor teamColor) {
+	public Team(String name, TeamColour teamColour) {
 		this.name = name;
-		this.teamColor = teamColor;
+		this.teamColour = teamColour;
 		this.players = new ArrayList<Player>();
 	}
 	
@@ -73,7 +73,7 @@ public class Team {
      * @return the current chat color.
      */
 	public ChatColor getChatColor() {
-		return teamColor.getChatColor();
+		return teamColour.getChatColor();
 	}
 
     /**
@@ -81,7 +81,7 @@ public class Team {
      * @return the current head block.
      */
 	public ItemStack getHeadBlock() {
-	    return teamColor.getHeadBlock();
+	    return teamColour.getHeadBlock();
 	}
 	
     /**
@@ -104,7 +104,7 @@ public class Team {
     //  Enumerators   //
     ////////////////////
     
-    public enum TeamColor {
+    public enum TeamColour {
         
         ORANGE      (ChatColor.GOLD, DyeColor.ORANGE),
         AQUA        (ChatColor.AQUA, DyeColor.LIGHT_BLUE),
@@ -118,20 +118,20 @@ public class Team {
         GREEN       (ChatColor.DARK_GREEN, DyeColor.GREEN),
         RED         (ChatColor.RED, DyeColor.RED);
         
-        private final ChatColor chatColor;
-        private final DyeColor headColor;
+        private final ChatColor chatColour;
+        private final DyeColor headColour;
         
-        private TeamColor(ChatColor chatColor, DyeColor headColor) {
-            this.chatColor = chatColor;
-            this.headColor = headColor;
+        private TeamColour(ChatColor chatColour, DyeColor headColour) {
+            this.chatColour = chatColour;
+            this.headColour = headColour;
         }
         
         public ChatColor getChatColor() {
-            return chatColor;
+            return chatColour;
         }
         
         public ItemStack getHeadBlock() {
-            return new ItemStack(Material.WOOL, 1, (short)0, headColor.getData());
+            return new ItemStack(Material.WOOL, 1, (short)0, headColour.getData());
         }
         
     }
