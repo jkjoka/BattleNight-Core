@@ -1,19 +1,24 @@
 package me.limebyte.battlenight.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import me.limebyte.battlenight.core.Battle.Team;
+import me.limebyte.battlenight.core.Battle.Classes.ArmorType;
 import me.limebyte.battlenight.core.Configuration.PlayerData;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * @author LimeByte.
  * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
-public class Util {
+public final class Util {
     
     // Get Main Class
     public static BattleNight plugin;
@@ -76,6 +81,28 @@ public class Util {
    public void setPlayerListName(Player p, Team t) {
 	   String pListName = "§7[BN] " + p.getName();
 	   p.setPlayerListName((pListName.length() < 16) ? pListName : pListName.substring(0, 16));
+   }
+   
+   ////////////////////
+   //     Items      //
+   ////////////////////
+   
+   public static List<ItemStack> sortArmor(List<ItemStack> armor) {
+	   ItemStack helmet = null, chestplate = null, leggings = null, boots = null;
+	   for (ItemStack stack : armor) {
+		   if		(ArmorType.HELMET.contains(stack))		helmet = stack;
+		   else if	(ArmorType.CHESTPLATE.contains(stack))	chestplate = stack;
+		   else if	(ArmorType.LEGGINGS.contains(stack))	leggings = stack;
+		   else if	(ArmorType.BOOTS.contains(stack))		boots = stack;
+	   }
+	   
+	   List<ItemStack> sorted = new ArrayList<ItemStack>();
+		   sorted.set(1, helmet);
+		   sorted.set(2, chestplate);
+		   sorted.set(3, leggings);
+		   sorted.set(4, boots);
+	   
+	   return sorted;
    }
     
 }
