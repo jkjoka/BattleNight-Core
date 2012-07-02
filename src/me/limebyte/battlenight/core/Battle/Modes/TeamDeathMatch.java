@@ -1,9 +1,11 @@
 package me.limebyte.battlenight.core.Battle.Modes;
 
+import org.bukkit.entity.Player;
+
 public class TeamDeathMatch implements BattleMode {
 
 	@Override
-	public void onDeath() {
+	public void onDeath(Player victim, Player killer) {
 		// TODO Auto-generated method stub
 		
 	}

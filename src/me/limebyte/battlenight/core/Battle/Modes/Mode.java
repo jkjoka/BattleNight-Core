@@ -10,7 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
-public class Mode implements Listener {
+public class Mode implements BattleMode,Listener {
 
 	private Team teamA;
 	private Team teamB;
