@@ -19,7 +19,6 @@ public class Commands implements CommandExecutor {
         plugin = instance;
     }
 
-    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] arg) {
     	
     	if (arg[0].equalsIgnoreCase("join") && Allowed(sender, "user", false)) {
