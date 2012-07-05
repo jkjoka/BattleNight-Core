@@ -1,5 +1,9 @@
 package me.limebyte.battlenight.core;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -78,8 +82,8 @@ public final class Util {
    // PlayerListName //
    ////////////////////
    
-   public void setPlayerListName(Player p, Team t) {
-	   String pListName = "§7[BN] " + p.getName();
+   public static void setPlayerListName(Player p, Team t) {
+	   String pListName = "ï¿½7[BN] " + p.getName();
 	   p.setPlayerListName((pListName.length() < 16) ? pListName : pListName.substring(0, 16));
    }
    
@@ -104,5 +108,22 @@ public final class Util {
 	   
 	   return sorted;
    }
+   
+   // Config
+   
+   public static void copyFile(InputStream in, File file) {
+		try {
+			OutputStream out = new FileOutputStream(file);
+			byte[] buf = new byte[1024];
+			int len;
+			while ((len = in.read(buf)) != -1) {
+				out.write(buf, 0, len);
+			}
+			out.close();
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
     
 }

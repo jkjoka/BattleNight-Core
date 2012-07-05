@@ -6,8 +6,8 @@ import static java.lang.Integer.toBinaryString;
 import java.util.Arrays;
 
 import me.limebyte.battlenight.core.BattleNight;
+import me.limebyte.battlenight.core.Util;
 import me.limebyte.battlenight.core.Battle.Team;
-import me.limebyte.battlenight.core.Configuration.Config.ConfigFile;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
@@ -31,25 +31,25 @@ public class PlayerData {
     }
     
     public void reloadPlayer(Player p) {
-    	
-    	FileConfiguration config = plugin.getConfigManager().get(ConfigFile.PLAYERS);
+    	FileConfiguration config = plugin.getConfigManager().get(Config.PLAYERS);
     	
     	// Reload the config
-    	plugin.getConfigManager().reload(ConfigFile.PLAYERS);
+    	plugin.getConfigManager().reload(Config.PLAYERS);
     	
     	if(config.getConfigurationSection(p.getName()) == null) {
     		config.set(p.getName() + ".stats.kills", obfuscate(0));
     		config.set(p.getName() + ".stats.deaths", obfuscate(0));
-        	// Save changes
-        	plugin.getConfigManager().save(ConfigFile.PLAYERS);
+        	
+    		// Save changes
+        	plugin.getConfigManager().save(Config.PLAYERS);
     	}
     }
     
     public void save(Player p) {
+    	FileConfiguration config = plugin.getConfigManager().get(Config.PLAYERS);
     	
     	// Reload the config
-    	plugin.getConfigManager().reload(ConfigFile.PLAYERS);
-    	FileConfiguration config = plugin.getConfigManager().get(ConfigFile.PLAYERS);
+    	plugin.getConfigManager().reload(Config.PLAYERS);
     	
     	// Inventory
     	config.set(p.getName() + ".data.inv.main", Arrays.asList(p.getInventory().getContents()));
@@ -94,13 +94,14 @@ public class PlayerData {
     	config.set(p.getName() + ".data.state.fireticks", p.getFireTicks());
     	
     	// Save it all
-    	plugin.getConfigManager().save(ConfigFile.PLAYERS);
+    	plugin.getConfigManager().save(Config.PLAYERS);
     }
 
     public void restore(Player p) {
+    	FileConfiguration config = plugin.getConfigManager().get(Config.PLAYERS);
+    	
     	// Reload the config
-    	plugin.getConfigManager().reload(ConfigFile.PLAYERS);
-    	FileConfiguration config = plugin.getConfigManager().get(ConfigFile.PLAYERS);
+    	plugin.getConfigManager().reload(Config.PLAYERS);
     	
     	// Inventory
     	p.getInventory().setContents(config.getList(p.getName() + ".data.inv.main").toArray(new ItemStack[0]));
@@ -159,7 +160,7 @@ public class PlayerData {
     	p.teleport(destination, TeleportCause.PLUGIN);
     	p.setSleepingIgnored(true);
     	p.setDisplayName(ChatColor.GRAY + "[BN] " + t.getChatColor() + p.getName() + ChatColor.RESET);
-    	plugin.util.setPlayerListName(p, t);
+    	Util.setPlayerListName(p, t);
     	p.setTicksLived(1);
     	p.setNoDamageTicks(0);
     	p.setRemainingAir(300);
@@ -168,25 +169,21 @@ public class PlayerData {
     }
 
     public void addKill(Player killer) {
-    	FileConfiguration config = plugin.getConfigManager().get(ConfigFile.PLAYERS);
-    	config.set(killer.getName() + ".stats.kills", getKills(killer) + 1);
-    	plugin.getConfigManager().save(ConfigFile.PLAYERS);
+    	plugin.getConfigManager().get(Config.PLAYERS).set(killer.getName() + ".stats.kills", getKills(killer) + 1);
+    	plugin.getConfigManager().save(Config.PLAYERS);
     }
 
     public void addDeath(Player victom) {
-    	FileConfiguration config = plugin.getConfigManager().get(ConfigFile.PLAYERS);
-    	config.set(victom.getName() + ".stats.deaths", getDeaths(victom) + 1);
-    	plugin.getConfigManager().save(ConfigFile.PLAYERS);
+    	plugin.getConfigManager().get(Config.PLAYERS).set(victom.getName() + ".stats.deaths", getDeaths(victom) + 1);
+    	plugin.getConfigManager().save(Config.PLAYERS);
     }
 
     public int getKills(Player p) {
-    	FileConfiguration config = plugin.getConfigManager().get(ConfigFile.PLAYERS);
-        return deObfuscate(config.getString(".stats.kills"));
+        return deObfuscate(plugin.getConfigManager().get(Config.PLAYERS).getString(".stats.kills"));
     }
 
     public int getDeaths(Player p) {
-    	FileConfiguration config = plugin.getConfigManager().get(ConfigFile.PLAYERS);
-    	return deObfuscate(config.getString(".stats.deaths"));
+    	return deObfuscate(plugin.getConfigManager().get(Config.PLAYERS).getString(".stats.deaths"));
     }
 
     public double getKDRatio(Player p) {

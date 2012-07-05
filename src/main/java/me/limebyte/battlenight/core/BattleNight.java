@@ -3,7 +3,7 @@ package me.limebyte.battlenight.core;
 import java.util.logging.Logger;
 
 import me.limebyte.battlenight.core.Battle.Battle;
-import me.limebyte.battlenight.core.Configuration.Config;
+import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
 import me.limebyte.battlenight.core.Configuration.PlayerData;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -20,7 +20,7 @@ public class BattleNight extends JavaPlugin {
 
     public PluginDescriptionFile pdFile;
     public Logger log;
-    private Config config;
+    private ConfigurationManager configManager;
     private PlayerData playerData;
     public Tracks tracks;
     public Util util;
@@ -36,8 +36,8 @@ public class BattleNight extends JavaPlugin {
     	// Register events
     	
     	// Configuration
-    	config = new Config(this);
-    	config.enable();
+    	configManager = new ConfigurationManager(this);
+    	configManager.initialize();
     	
         // Link classes
         playerData = new PlayerData(this);
@@ -60,13 +60,14 @@ public class BattleNight extends JavaPlugin {
         log.info("Version " + pdFile.getVersion() + " disabled.");
     }
     
+    
     @Override @Deprecated
     public FileConfiguration getConfig() {
         return null;
     }
     
-    public Config getConfigManager() {
-        return config;
+    public ConfigurationManager getConfigManager() {
+        return configManager;
     }
     
     public PlayerData getPlayerData() {

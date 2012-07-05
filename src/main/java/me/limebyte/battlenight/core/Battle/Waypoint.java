@@ -14,7 +14,7 @@ public class Waypoint {
 
     private Arena arena;
     private WaypointType type;
-    static Config.ConfigFile configFile = Config.ConfigFile.WAYPOINTS;
+    private static Config configFile = Config.WAYPOINTS;
 
     // Get Main Class
     public static BattleNight plugin;
