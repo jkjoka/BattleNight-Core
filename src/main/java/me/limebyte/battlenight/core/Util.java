@@ -30,7 +30,7 @@ public final class Util {
         plugin = instance;
     }
 	
-    public String locationToString(Location loc) {
+    public static String locationToString(Location loc) {
     	String w = loc.getWorld().getName();
     	double x = loc.getBlockX() + 0.5;
     	int y = loc.getBlockY();
@@ -38,7 +38,7 @@ public final class Util {
     	return w + "," + x + "," + y + "," + z;
     }
     
-    public Location locationFromString(String s) {
+    public static Location locationFromString(String s) {
     	String part[] = s.split(",");
     	World w = Bukkit.getServer().getWorld(part[0]);
     	double x = Double.parseDouble(part[1]);
