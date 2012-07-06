@@ -75,7 +75,7 @@ public class PlayerData {
     	config.set(p.getName() + ".data.flight.flying", p.isFlying());
     	
     	// Locations
-    	config.set(p.getName() + ".data.location", plugin.util.locationToString(p.getLocation()));
+    	config.set(p.getName() + ".data.location", Util.locationToString(p.getLocation()));
     	
     	// Sleep
     	config.set(p.getName() + ".data.sleepignored", p.isSleepingIgnored());
@@ -127,7 +127,7 @@ public class PlayerData {
     	p.setFlying(config.getBoolean(p.getName() + ".data.flight.flying"));
     	
     	// Locations
-    	p.teleport(plugin.util.locationFromString(config.getString(p.getName() + ".data.location")), TeleportCause.PLUGIN);
+    	p.teleport(Util.locationFromString(config.getString(p.getName() + ".data.location")), TeleportCause.PLUGIN);
     	
     	// Sleep
     	p.setSleepingIgnored(config.getBoolean(p.getName() + ".data.sleepignored"));

@@ -21,7 +21,7 @@ public class Waypoint {
     private Arena arena;
     private WaypointType type;
     private static final ConfigurationManager cm = plugin.getConfigManager();
-    private static final Config configFile = Config.WAYPOINTS;
+    private static final Config configFile = Config.ARENAS;
 
     ////////////////////
     //  Constructors  //
@@ -61,7 +61,7 @@ public class Waypoint {
      * Gets the arena associated with this waypoint.  This may return null if it is a general
      * waypoint.
      * 
-     * @return The arena
+     * @return The arena.
      */
     public Arena getArena() {
         return arena;
@@ -70,7 +70,7 @@ public class Waypoint {
     /**
      * Gets the type of waypoint.
      * 
-     * @return The type
+     * @return The type.
      */
     public WaypointType getType() {
         return type;
@@ -79,7 +79,7 @@ public class Waypoint {
     /**
      * Gets the location for this waypoint.  This may return null if it is not set.
      * 
-     * @return The location
+     * @return The location.
      * @see Waypoint#isSet()
      * @see Waypoint#setLocation(Location)
      */
@@ -117,7 +117,7 @@ public class Waypoint {
         
         // Set the location string
         if (arena != null) {
-        	cm.get(configFile).set(arena.getName() + "." + type.getName(), loc);
+        	cm.get(configFile).set(arena.getName() + ".waypoints." + type.getName(), loc);
         }
         else {
         	cm.get(configFile).set("general." + type.getName(), loc);
@@ -152,6 +152,11 @@ public class Waypoint {
         SPECTATOR,
         EXIT;
         
+        /**
+         * Gets the configuration name for the type.
+         * 
+         * @return The name.
+         */
         public String getName() {
             return this.name().toLowerCase();
         }

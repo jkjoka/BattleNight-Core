@@ -9,7 +9,7 @@ public class ConfigurationManager {
 	private Configuration main;
 	private Configuration classes;
 	private Configuration tracks;
-	private Configuration waypoints;
+	private Configuration arenas;
 	private Configuration players;
     
     // Get Main Class
@@ -22,13 +22,13 @@ public class ConfigurationManager {
     	main = new Configuration(plugin, "Config.yml");
     	classes = new Configuration(plugin, "Classes.yml");
     	tracks = new Configuration(plugin, "Tracks.yml");
-    	waypoints = new Configuration(plugin, "Waypoints.dat", "PluginData");
+    	arenas = new Configuration(plugin, "Arenas.dat", "PluginData");
     	players = new Configuration(plugin, "Players.dat", "PluginData");
     	
     	main.initialize();
     	classes.initialize();
     	tracks.initialize();
-    	waypoints.initialize();
+    	arenas.initialize();
     	players.initialize();
     }
     
@@ -43,8 +43,8 @@ public class ConfigurationManager {
             case TRACKS:
                 tracks.save();
                 break;
-            case WAYPOINTS:
-                waypoints.save();
+            case ARENAS:
+                arenas.save();
                 break;
             case PLAYERS:
                 players.save();
@@ -59,7 +59,7 @@ public class ConfigurationManager {
     	main.save();
     	classes.save();
     	tracks.save();
-    	waypoints.save();
+    	arenas.save();
     	players.save();
     }
     
@@ -74,8 +74,8 @@ public class ConfigurationManager {
             case TRACKS:
                 tracks.reload();
                 break;
-            case WAYPOINTS:
-                waypoints.reload();
+            case ARENAS:
+                arenas.reload();
                 break;
             case PLAYERS:
                 players.reload();
@@ -100,8 +100,8 @@ public class ConfigurationManager {
                 return classes.get();
             case TRACKS:
                 return tracks.get();
-            case WAYPOINTS:
-                return waypoints.get();
+            case ARENAS:
+                return arenas.get();
             case PLAYERS:
                 return players.get();
             default:
