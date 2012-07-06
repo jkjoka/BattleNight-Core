@@ -1,28 +1,28 @@
 package me.limebyte.battlenight.core.Exceptions;
 
+import org.bukkit.entity.Player;
+
 import me.limebyte.battlenight.core.Util;
 import me.limebyte.battlenight.core.Tracks.Track;
 
-import org.bukkit.entity.Player;
-
 /**
- * Represents a BattleInProgressException.
+ * Represents a NotInBattleException.
  * 
  * @author LimeByte.
  * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
 @SuppressWarnings("serial")
-public class BattleInProgressException extends RuntimeException {
-
+public class NotInBattleException extends RuntimeException {
+    
     ////////////////////
     //  Constructors  //
     ////////////////////
     
     /**
-     * Constructs a new BattleInProgressException.
+     * Constructs a new NotInBattleException.
      */
-    public BattleInProgressException(Player player) {
+    public NotInBattleException(Player player) {
         Util.tellPlayer(player, Track.PLAYER_NOT_FOUND);
         return;
     }

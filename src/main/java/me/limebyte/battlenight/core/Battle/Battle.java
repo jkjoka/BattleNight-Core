@@ -1,9 +1,14 @@
 package me.limebyte.battlenight.core.Battle;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.entity.Player;
 
 import me.limebyte.battlenight.core.BattleNight;
+import me.limebyte.battlenight.core.Exceptions.AlreadyInBattleException;
 import me.limebyte.battlenight.core.Exceptions.BattleInProgressException;
+import me.limebyte.battlenight.core.Exceptions.NotInBattleException;
 
 /**
  * Represents a Battle
@@ -15,7 +20,7 @@ import me.limebyte.battlenight.core.Exceptions.BattleInProgressException;
 public class Battle {
     
     private Arena arena;
-    private Player[] players;
+    private List<String> players = new ArrayList<String>();
     
     private boolean inProgress = false;
 
@@ -30,20 +35,42 @@ public class Battle {
     ////////////////////
     
     public void start() {
-        
+        inProgress = true;
     }
     
     public void stop() {
-        
+    	inProgress = false;
     }
     
-    public void addPlayer(Player player) throws BattleInProgressException {
-        if (this.isInProgress()) throw new BattleInProgressException();
+    /**
+     * 
+     * @param player
+     * @throws BattleInProgressException
+     * @throws AlreadyInBattleException
+     */
+    public void addPlayer(Player player) {
+        if (this.isInProgress()) throw new BattleInProgressException(player);
+        if (this.containsPlayer(player)) throw new AlreadyInBattleException(player);
+        
+        players.add(player.getName());
+        plugin.getPlayerData().save(player);
+    }
+    
+    /**
+     * 
+     * @param player
+     * @throws NotInBattleException
+     */
+    public void removePlayer(Player player) throws NotInBattleException {
+        if (!this.containsPlayer(player)) throw new NotInBattleException(player);
+        
+        players.remove(player.getName());
+        plugin.getPlayerData().restore(player);
     }
     
     public boolean containsPlayer(Player player) {
-    	for (Player p : players) {
-    		if (player == p) return true;
+    	for (String p : players) {
+    		if (player == plugin.getServer().getPlayerExact(p)) return true;
     	}
     	
     	return false;
@@ -57,8 +84,12 @@ public class Battle {
 		return arena;
     }
     
-    public Player[] getPlayers() {
-		return players;
+    public List<Player> getPlayers() {
+    	List<Player> playerList = new ArrayList<Player>();
+    	for (String p : players) {
+    		playerList.add(plugin.getServer().getPlayerExact(p));
+    	}
+		return playerList;
     }
     
     public boolean isInProgress() {

@@ -1,6 +1,5 @@
 package me.limebyte.battlenight.core;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -22,20 +21,25 @@ public class Commands implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] arg) {
     	
     	if (arg[0].equalsIgnoreCase("join") && Allowed(sender, "user", false)) {
-	    	//Player player = (Player) sender;
+	    	Player player = (Player) sender;
+	    	try {
+				plugin.getBattle().addPlayer(player);
+			} catch (Exception e) {}
     	}
     	
     	else if (arg[0].equalsIgnoreCase("leave") && Allowed(sender, "user", false)) {
-    		//Player player = (Player) sender;
+    		Player player = (Player) sender;
+    		try {
+    			plugin.getBattle().removePlayer(player);
+    		} catch (Exception e) {}
     	}
     	
-    	else if (arg[0].equalsIgnoreCase("find") && Allowed(sender, "user", true)) {
-    		if (Bukkit.getServer().getPlayerExact(arg[1]) != null) {
-    			sender.sendMessage("Found!");
-    		}
-    		else {
-    			sender.sendMessage(Tracks.Track.PLAYER_NOT_FOUND.getMessage(arg[1]));
-    		}
+    	else if (arg[0].equalsIgnoreCase("start") && Allowed(sender, "admin", true)) {
+    		plugin.getBattle().start();
+    	}
+    	
+    	else if (arg[0].equalsIgnoreCase("stop") && Allowed(sender, "admin", true)) {
+    		plugin.getBattle().stop();
     	}
     	
     	else {

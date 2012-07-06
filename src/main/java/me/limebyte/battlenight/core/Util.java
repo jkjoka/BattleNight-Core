@@ -52,11 +52,11 @@ public final class Util {
     //  Chat Related  //
     ////////////////////
     
-    public void tellPlayer(Player p, Tracks.Track t) {
+    public static void tellPlayer(Player p, Tracks.Track t) {
         p.sendMessage(t.getMessage());
     }
     
-    public void tellPlayers(Player[] p, Tracks.Track t) {
+    public static void tellPlayers(Player[] p, Tracks.Track t) {
         for (Player aP : p) {
             aP.sendMessage(t.getMessage());
         }
