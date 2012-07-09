@@ -1,12 +1,12 @@
-name: "${project.name}"
+name: ${project.name}
 author: LimeByte
-version: "${project.version}"
-description: "${project.description}"
+version: ${project.version}
+description: ${project.description}
 
 main: me.limebyte.battlenight.core.BattleNight
 load: POSTWORLD
 
-website: "${project.url}"
+website: ${project.url}
 dev-url: http://dev.bukkit.org/server-mods/battlenight/
 database: false
 
