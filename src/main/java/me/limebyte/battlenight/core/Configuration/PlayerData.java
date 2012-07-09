@@ -7,11 +7,7 @@ import java.util.Arrays;
 
 import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Util;
-import me.limebyte.battlenight.core.Battle.Team;
-
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
@@ -146,8 +142,8 @@ public class PlayerData {
     	p.setFireTicks(config.getInt(p.getName() + ".data.state.fireticks"));
     }
     
-    public void reset(Player p, Team t, Location destination) {
-    	p.getInventory().clear();
+    public void reset(Player p/**, Battle b**/) {
+    	Util.clearInventory(p);
     	p.setHealth(p.getMaxHealth());
     	p.setFoodLevel(16);
     	p.setSaturation(1000);
@@ -157,10 +153,10 @@ public class PlayerData {
     	p.setGameMode(GameMode.SURVIVAL);
     	p.setAllowFlight(false);
     	p.setFlying(false);
-    	p.teleport(destination, TeleportCause.PLUGIN);
+    	//TODO p.teleport(b.getArena().getSpawn(team), TeleportCause.PLUGIN);
     	p.setSleepingIgnored(true);
-    	p.setDisplayName(ChatColor.GRAY + "[BN] " + t.getChatColor() + p.getName() + ChatColor.RESET);
-    	Util.setPlayerListName(p, t);
+    	//TODO p.setDisplayName(ChatColor.GRAY + "[BN] " + team.getChatColor() + p.getName() + ChatColor.RESET);
+    	//TODO Util.setPlayerListName(p, t);
     	p.setTicksLived(1);
     	p.setNoDamageTicks(0);
     	p.setRemainingAir(300);

@@ -16,6 +16,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 /**
  * @author LimeByte.
@@ -66,15 +67,15 @@ public final class Util {
     //  Battle Util   //
     ////////////////////
     
-   public void preparePlayer(Player p, Team t, Location destination) {
+   public static void preparePlayer(Player p) {
 	   PlayerData pd = plugin.getPlayerData();
 	   pd.save(p);
-	   pd.reset(p, t, destination);
+	   pd.reset(p);
    }
    
-   public void restorePlayer(Player p, Team t, Location destination) {
+   public static void restorePlayer(Player p) {
 	   PlayerData pd = plugin.getPlayerData();
-	   pd.reset(p, t, destination);
+	   pd.reset(p);
 	   pd.restore(p);
    }
    
@@ -90,6 +91,12 @@ public final class Util {
    ////////////////////
    //     Items      //
    ////////////////////
+   
+   public static void clearInventory(Player player) {
+	   PlayerInventory inv = player.getInventory();
+	   inv.clear();
+	   inv.setArmorContents(new ItemStack[inv.getArmorContents().length]);
+   }
    
    public static List<ItemStack> sortArmor(List<ItemStack> armor) {
 	   ItemStack helmet = null, chestplate = null, leggings = null, boots = null;

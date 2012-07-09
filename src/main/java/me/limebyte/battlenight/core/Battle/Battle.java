@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.entity.Player;
 
 import me.limebyte.battlenight.core.BattleNight;
+import me.limebyte.battlenight.core.Util;
 import me.limebyte.battlenight.core.Exceptions.AlreadyInBattleException;
 import me.limebyte.battlenight.core.Exceptions.BattleInProgressException;
 import me.limebyte.battlenight.core.Exceptions.NotInBattleException;
@@ -53,7 +54,7 @@ public class Battle {
         if (this.containsPlayer(player)) throw new AlreadyInBattleException(player);
         
         players.add(player.getName());
-        plugin.getPlayerData().save(player);
+        Util.preparePlayer(player);
     }
     
     /**
@@ -65,7 +66,7 @@ public class Battle {
         if (!this.containsPlayer(player)) throw new NotInBattleException(player);
         
         players.remove(player.getName());
-        plugin.getPlayerData().restore(player);
+        Util.restorePlayer(player);
     }
     
     public boolean containsPlayer(Player player) {
@@ -80,7 +81,7 @@ public class Battle {
     //    Getters     //
     ////////////////////
     
-    public Arena getCurrentArena() {
+    public Arena getArena() {
 		return arena;
     }
     
