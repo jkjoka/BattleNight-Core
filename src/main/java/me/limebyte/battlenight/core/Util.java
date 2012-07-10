@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.limebyte.battlenight.core.Battle.Team;
-import me.limebyte.battlenight.core.Battle.Classes.ArmorType;
+import me.limebyte.battlenight.core.Battle.Classes.ArmourType;
 import me.limebyte.battlenight.core.Configuration.PlayerData;
 
 import org.bukkit.Bukkit;
@@ -98,13 +98,13 @@ public final class Util {
 	   inv.setArmorContents(new ItemStack[inv.getArmorContents().length]);
    }
    
-   public static List<ItemStack> sortArmor(List<ItemStack> armor) {
+   public static List<ItemStack> sortArmour(List<ItemStack> armor) {
 	   ItemStack helmet = null, chestplate = null, leggings = null, boots = null;
 	   for (ItemStack stack : armor) {
-		   if		(ArmorType.HELMET.contains(stack))		helmet = stack;
-		   else if	(ArmorType.CHESTPLATE.contains(stack))	chestplate = stack;
-		   else if	(ArmorType.LEGGINGS.contains(stack))	leggings = stack;
-		   else if	(ArmorType.BOOTS.contains(stack))		boots = stack;
+		   if		(ArmourType.HELMET.contains(stack))		helmet = stack;
+		   else if	(ArmourType.CHESTPLATE.contains(stack))	chestplate = stack;
+		   else if	(ArmourType.LEGGINGS.contains(stack))	leggings = stack;
+		   else if	(ArmourType.BOOTS.contains(stack))		boots = stack;
 	   }
 	   
 	   List<ItemStack> sorted = new ArrayList<ItemStack>();

@@ -11,12 +11,12 @@ import org.bukkit.inventory.PlayerInventory;
 public final class Class {
 
 	private String name;
-	private List<ItemStack> items, armor;
+	private List<ItemStack> items, armour;
 	
-	public Class(String name, List<ItemStack> items, List<ItemStack> armor) {
+	public Class(String name, List<ItemStack> items, List<ItemStack> armour) {
 		this.name = name;
 		this.items = items;
-		this.armor = Util.sortArmor(armor);
+		this.armour = Util.sortArmour(armour);
 	}
 	
 	public String getName() {
@@ -27,8 +27,8 @@ public final class Class {
 		return items;
 	}
 
-	public List<ItemStack> getArmor() {
-		return armor;
+	public List<ItemStack> getArmour() {
+		return armour;
 	}
 
 	public void equip(Player player) {
@@ -38,10 +38,10 @@ public final class Class {
 			inv.addItem(stack);
 		}
 		
-        inv.setHelmet		(armor.get(1));
-        inv.setChestplate	(armor.get(2));
-        inv.setLeggings		(armor.get(3));
-        inv.setBoots		(armor.get(4));
+        inv.setHelmet		(armour.get(1));
+        inv.setChestplate	(armour.get(2));
+        inv.setLeggings		(armour.get(3));
+        inv.setBoots		(armour.get(4));
 	}
 	
 }

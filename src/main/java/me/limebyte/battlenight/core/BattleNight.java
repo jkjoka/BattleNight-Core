@@ -3,6 +3,7 @@ package me.limebyte.battlenight.core;
 import java.util.logging.Logger;
 
 import me.limebyte.battlenight.core.Battle.Battle;
+import me.limebyte.battlenight.core.Battle.Classes.ClassManager;
 import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
 import me.limebyte.battlenight.core.Configuration.PlayerData;
 
@@ -21,6 +22,7 @@ public class BattleNight extends JavaPlugin {
     public PluginDescriptionFile pdFile;
     public Logger log;
     private ConfigurationManager configManager;
+    private ClassManager classManager;
     private PlayerData playerData;
     public Tracks tracks;
     public Util util;
@@ -38,6 +40,9 @@ public class BattleNight extends JavaPlugin {
     	// Configuration
     	configManager = new ConfigurationManager(this);
     	configManager.initialize();
+    	
+    	// Classes
+    	classManager = new ClassManager(this);
     	
         // Link classes
         playerData = new PlayerData(this);
@@ -68,6 +73,10 @@ public class BattleNight extends JavaPlugin {
     
     public ConfigurationManager getConfigManager() {
         return configManager;
+    }
+    
+    public ClassManager getClassManager() {
+        return classManager;
     }
     
     public PlayerData getPlayerData() {

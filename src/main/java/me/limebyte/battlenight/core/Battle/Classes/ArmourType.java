@@ -3,7 +3,7 @@ package me.limebyte.battlenight.core.Battle.Classes;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public enum ArmorType {
+public enum ArmourType {
 	HELMET		(Material.CHAINMAIL_HELMET,
 				 Material.IRON_HELMET,
 				 Material.GOLD_HELMET,
@@ -23,7 +23,7 @@ public enum ArmorType {
 	
 	private final Material[] materials;
 	
-	ArmorType(Material... materials) {
+	ArmourType(Material... materials) {
 		this.materials = materials;
 	}
 	
