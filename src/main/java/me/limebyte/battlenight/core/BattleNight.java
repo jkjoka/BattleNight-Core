@@ -19,9 +19,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class BattleNight extends JavaPlugin {
 
+	private static BattleNight instance;
     public PluginDescriptionFile pdFile;
     public Logger log;
-    private ConfigurationManager configManager;
     private ClassManager classManager;
     private PlayerData playerData;
     public Tracks tracks;
@@ -31,6 +31,8 @@ public class BattleNight extends JavaPlugin {
     @Override
     public void onEnable() {
 
+    	instance = this;
+    	
     	// Get plugin.yml and logger
     	pdFile = getDescription();
     	log = getLogger();
@@ -38,11 +40,11 @@ public class BattleNight extends JavaPlugin {
     	// Register events
     	
     	// Configuration
-    	configManager = new ConfigurationManager(this);
-    	configManager.initialize();
+    	ConfigurationManager.initialize();
     	
     	// Classes
     	classManager = new ClassManager(this);
+    	classManager.loadClasses();
     	
         // Link classes
         playerData = new PlayerData(this);
@@ -61,6 +63,10 @@ public class BattleNight extends JavaPlugin {
 
     @Override
     public void onDisable() {
+    	
+    	// Classes
+    	classManager.saveClasses();
+    	
         // Print disable message to the console
         log.info("Version " + pdFile.getVersion() + " disabled.");
     }
@@ -69,10 +75,6 @@ public class BattleNight extends JavaPlugin {
     @Override @Deprecated
     public FileConfiguration getConfig() {
         return null;
-    }
-    
-    public ConfigurationManager getConfigManager() {
-        return configManager;
     }
     
     public ClassManager getClassManager() {
@@ -85,6 +87,10 @@ public class BattleNight extends JavaPlugin {
     
     public Battle getBattle() {
     	return battle;
+    }
+    
+    public static BattleNight getInstance() {
+    	return instance;
     }
 
 }

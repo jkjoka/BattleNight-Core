@@ -42,6 +42,11 @@ public class Commands implements CommandExecutor {
     		plugin.getBattle().stop();
     	}
     	
+    	else if (arg[0].equalsIgnoreCase("equip") && Allowed(sender, "user", true)) {
+    		Player player = (Player) sender;
+    		plugin.getClassManager().getClasses().get(1).equip(player);
+    	}
+    	
     	else {
     	    // Invalid Command
     	}

@@ -38,10 +38,10 @@ public final class Class {
 			inv.addItem(stack);
 		}
 		
-        inv.setHelmet		(armour.get(1));
-        inv.setChestplate	(armour.get(2));
-        inv.setLeggings		(armour.get(3));
-        inv.setBoots		(armour.get(4));
+        inv.setHelmet		(armour.get(0));
+        inv.setChestplate	(armour.get(1));
+        inv.setLeggings		(armour.get(2));
+        inv.setBoots		(armour.get(3));
 	}
 	
 }

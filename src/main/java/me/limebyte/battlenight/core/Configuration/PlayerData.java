@@ -27,25 +27,25 @@ public class PlayerData {
     }
     
     public void reloadPlayer(Player p) {
-    	FileConfiguration config = plugin.getConfigManager().get(Config.PLAYERS);
+    	FileConfiguration config = ConfigurationManager.get(Config.PLAYERS);
     	
     	// Reload the config
-    	plugin.getConfigManager().reload(Config.PLAYERS);
+    	ConfigurationManager.reload(Config.PLAYERS);
     	
     	if(config.getConfigurationSection(p.getName()) == null) {
     		config.set(p.getName() + ".stats.kills", obfuscate(0));
     		config.set(p.getName() + ".stats.deaths", obfuscate(0));
         	
     		// Save changes
-        	plugin.getConfigManager().save(Config.PLAYERS);
+        	ConfigurationManager.save(Config.PLAYERS);
     	}
     }
     
     public void save(Player p) {
-    	FileConfiguration config = plugin.getConfigManager().get(Config.PLAYERS);
+    	FileConfiguration config = ConfigurationManager.get(Config.PLAYERS);
     	
     	// Reload the config
-    	plugin.getConfigManager().reload(Config.PLAYERS);
+    	ConfigurationManager.reload(Config.PLAYERS);
     	
     	// Inventory
     	config.set(p.getName() + ".data.inv.main", Arrays.asList(p.getInventory().getContents()));
@@ -90,14 +90,14 @@ public class PlayerData {
     	config.set(p.getName() + ".data.state.fireticks", p.getFireTicks());
     	
     	// Save it all
-    	plugin.getConfigManager().save(Config.PLAYERS);
+    	ConfigurationManager.save(Config.PLAYERS);
     }
 
     public void restore(Player p) {
-    	FileConfiguration config = plugin.getConfigManager().get(Config.PLAYERS);
+    	FileConfiguration config = ConfigurationManager.get(Config.PLAYERS);
     	
     	// Reload the config
-    	plugin.getConfigManager().reload(Config.PLAYERS);
+    	ConfigurationManager.reload(Config.PLAYERS);
     	
     	// Inventory
     	p.getInventory().setContents(config.getList(p.getName() + ".data.inv.main").toArray(new ItemStack[0]));
@@ -165,21 +165,21 @@ public class PlayerData {
     }
 
     public void addKill(Player killer) {
-    	plugin.getConfigManager().get(Config.PLAYERS).set(killer.getName() + ".stats.kills", getKills(killer) + 1);
-    	plugin.getConfigManager().save(Config.PLAYERS);
+    	ConfigurationManager.get(Config.PLAYERS).set(killer.getName() + ".stats.kills", getKills(killer) + 1);
+    	ConfigurationManager.save(Config.PLAYERS);
     }
 
     public void addDeath(Player victom) {
-    	plugin.getConfigManager().get(Config.PLAYERS).set(victom.getName() + ".stats.deaths", getDeaths(victom) + 1);
-    	plugin.getConfigManager().save(Config.PLAYERS);
+    	ConfigurationManager.get(Config.PLAYERS).set(victom.getName() + ".stats.deaths", getDeaths(victom) + 1);
+    	ConfigurationManager.save(Config.PLAYERS);
     }
 
     public int getKills(Player p) {
-        return deObfuscate(plugin.getConfigManager().get(Config.PLAYERS).getString(".stats.kills"));
+        return deObfuscate(ConfigurationManager.get(Config.PLAYERS).getString(".stats.kills"));
     }
 
     public int getDeaths(Player p) {
-    	return deObfuscate(plugin.getConfigManager().get(Config.PLAYERS).getString(".stats.deaths"));
+    	return deObfuscate(ConfigurationManager.get(Config.PLAYERS).getString(".stats.deaths"));
     }
 
     public double getKDRatio(Player p) {

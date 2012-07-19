@@ -1,6 +1,7 @@
 package me.limebyte.battlenight.core;
 
 import me.limebyte.battlenight.core.Configuration.Config;
+import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
 
 import org.bukkit.ChatColor;
 
@@ -30,12 +31,12 @@ public class Tracks {
         private String cp;
 
         public String getMessage() {
-            String track = plugin.getConfigManager().get(Config.TRACKS).getString(cp);
+            String track = ConfigurationManager.get(Config.TRACKS).getString(cp);
             return prefix + ChatColor.translateAlternateColorCodes('&', track);
         }
         
         public String getMessage(String... args) {
-        	String track = plugin.getConfigManager().get(Config.TRACKS).getString(cp).replaceAll("<arg([0-9])>", args[Integer.parseInt("$1")]);
+        	String track = ConfigurationManager.get(Config.TRACKS).getString(cp).replaceAll("<arg([0-9])>", args[Integer.parseInt("$1")]);
         	return prefix + ChatColor.translateAlternateColorCodes('&', track);
         }
     }

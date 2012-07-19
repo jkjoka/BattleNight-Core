@@ -21,7 +21,6 @@ public class Arena {
     private String name;
     private Waypoint aSpawn = new Waypoint(WaypointType.ASPAWN, this);
     private Waypoint bSpawn = new Waypoint(WaypointType.BSPAWN, this);
-    private static final ConfigurationManager cm = plugin.getConfigManager();
     private static final Config configFile = Config.ARENAS;
     
     ////////////////////
@@ -61,8 +60,8 @@ public class Arena {
      * @return The display name
      */
     public String getDisplayName() {
-    	cm.reload(configFile);
-        return cm.get(configFile).getString(name + ".displayname", name);
+    	ConfigurationManager.reload(configFile);
+        return ConfigurationManager.get(configFile).getString(name + ".displayname", name);
     }
 
     /**
@@ -94,8 +93,8 @@ public class Arena {
      * @param displayName The new display name
      */
     public void setDisplayName(String displayName) {
-    	cm.get(configFile).set(name + ".displayname", displayName);
-    	cm.save(configFile);
+    	ConfigurationManager.get(configFile).set(name + ".displayname", displayName);
+    	ConfigurationManager.save(configFile);
     }
 
     /**
@@ -123,8 +122,8 @@ public class Arena {
      * @see Arena#isEnabled()
      */
     public void enable() {
-        cm.get(configFile).set(name + ".enabled", true);
-        cm.save(configFile);
+        ConfigurationManager.get(configFile).set(name + ".enabled", true);
+        ConfigurationManager.save(configFile);
     }
     
     /**
@@ -134,8 +133,8 @@ public class Arena {
      * @see Arena#isEnabled()
      */
     public void disable() {
-        cm.get(configFile).set(name + ".enabled", false);
-        cm.save(configFile);
+        ConfigurationManager.get(configFile).set(name + ".enabled", false);
+        ConfigurationManager.save(configFile);
     }
 
     ////////////////////
@@ -159,8 +158,8 @@ public class Arena {
      * @see Arena#disable()
      */
     public boolean isEnabled() {
-    	cm.reload(configFile);
-        return cm.get(configFile).getBoolean(name + ".enabled", true);
+    	ConfigurationManager.reload(configFile);
+        return ConfigurationManager.get(configFile).getBoolean(name + ".enabled", true);
     }
 
 }

@@ -20,7 +20,6 @@ public class Waypoint {
 	
     private Arena arena;
     private WaypointType type;
-    private static final ConfigurationManager cm = plugin.getConfigManager();
     private static final Config configFile = Config.ARENAS;
 
     ////////////////////
@@ -85,15 +84,15 @@ public class Waypoint {
      */
     public Location getLocation() {
         // Reload the configuration
-        cm.reload(configFile);
+        ConfigurationManager.reload(configFile);
         
         // Get the location string
         String loc;
         if (arena != null) {
-        	loc = cm.get(configFile).getString(arena.getName() + "." + type.getName());
+        	loc = ConfigurationManager.get(configFile).getString(arena.getName() + "." + type.getName());
         }
         else {
-        	loc = cm.get(configFile).getString("general." + type.getName());
+        	loc = ConfigurationManager.get(configFile).getString("general." + type.getName());
         }
         
         // Convert it to a Location
@@ -117,14 +116,14 @@ public class Waypoint {
         
         // Set the location string
         if (arena != null) {
-        	cm.get(configFile).set(arena.getName() + ".waypoints." + type.getName(), loc);
+        	ConfigurationManager.get(configFile).set(arena.getName() + ".waypoints." + type.getName(), loc);
         }
         else {
-        	cm.get(configFile).set("general." + type.getName(), loc);
+        	ConfigurationManager.get(configFile).set("general." + type.getName(), loc);
         }
         
         // Save the configuration
-        cm.save(configFile);
+        ConfigurationManager.save(configFile);
     }
 
     ////////////////////

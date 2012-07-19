@@ -6,19 +6,17 @@ import me.limebyte.battlenight.core.BattleNight;
 
 public class ConfigurationManager {
 	
-	private Configuration main;
-	private Configuration classes;
-	private Configuration tracks;
-	private Configuration arenas;
-	private Configuration players;
-    
-    // Get Main Class
     public static BattleNight plugin;
-    public ConfigurationManager(BattleNight instance) {
-        plugin = instance;
-    }
 	
-    public void initialize() {
+	private static Configuration main;
+	private static Configuration classes;
+	private static Configuration tracks;
+	private static Configuration arenas;
+	private static Configuration players;
+	
+    public static void initialize() {
+    	plugin = BattleNight.getInstance();
+    	
     	main = new Configuration(plugin, "Config.yml");
     	classes = new Configuration(plugin, "Classes.yml");
     	tracks = new Configuration(plugin, "Tracks.yml");
@@ -32,7 +30,7 @@ public class ConfigurationManager {
     	players.initialize();
     }
     
-    public void save(Config config) {
+    public static void save(Config config) {
         switch (config) {
             case MAIN:
                 main.save();
@@ -55,7 +53,7 @@ public class ConfigurationManager {
         }
     }
     
-    public void saveAll() {
+    public static void saveAll() {
     	main.save();
     	classes.save();
     	tracks.save();
@@ -63,7 +61,7 @@ public class ConfigurationManager {
     	players.save();
     }
     
-    public void reload(Config config) {
+    public static void reload(Config config) {
         switch (config) {
             case MAIN:
                 main.reload();
@@ -86,13 +84,13 @@ public class ConfigurationManager {
         }
     }
     
-    public void reloadAll() {
+    public static void reloadAll() {
     	main.reload();
     	classes.reload();
     	tracks.reload();
     }
     
-    public FileConfiguration get(Config config) {
+    public static FileConfiguration get(Config config) {
         switch (config) {
             case MAIN:
                 return main.get();

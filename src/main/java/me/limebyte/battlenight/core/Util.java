@@ -98,9 +98,9 @@ public final class Util {
 	   inv.setArmorContents(new ItemStack[inv.getArmorContents().length]);
    }
    
-   public static List<ItemStack> sortArmour(List<ItemStack> armor) {
+   public static List<ItemStack> sortArmour(List<ItemStack> armour) {
 	   ItemStack helmet = null, chestplate = null, leggings = null, boots = null;
-	   for (ItemStack stack : armor) {
+	   for (ItemStack stack : armour) {
 		   if		(ArmourType.HELMET.contains(stack))		helmet = stack;
 		   else if	(ArmourType.CHESTPLATE.contains(stack))	chestplate = stack;
 		   else if	(ArmourType.LEGGINGS.contains(stack))	leggings = stack;
@@ -108,10 +108,10 @@ public final class Util {
 	   }
 	   
 	   List<ItemStack> sorted = new ArrayList<ItemStack>();
-		   sorted.set(1, helmet);
-		   sorted.set(2, chestplate);
-		   sorted.set(3, leggings);
-		   sorted.set(4, boots);
+		   sorted.add(0, helmet);
+		   sorted.add(1, chestplate);
+		   sorted.add(2, leggings);
+		   sorted.add(3, boots);
 	   
 	   return sorted;
    }
