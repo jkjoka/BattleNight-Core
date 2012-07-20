@@ -1,8 +1,9 @@
-package me.limebyte.battlenight.core.Battle;
+package me.limebyte.battlenight.core.Battle.Arenas;
 
 import org.bukkit.Location;
 
 import me.limebyte.battlenight.core.BattleNight;
+import me.limebyte.battlenight.core.Battle.Waypoint;
 import me.limebyte.battlenight.core.Battle.Waypoint.WaypointType;
 import me.limebyte.battlenight.core.Configuration.Config;
 import me.limebyte.battlenight.core.Configuration.ConfigurationManager;

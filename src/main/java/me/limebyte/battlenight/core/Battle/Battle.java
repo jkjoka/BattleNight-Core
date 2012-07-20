@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 
 import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Util;
+import me.limebyte.battlenight.core.Battle.Arenas.Arena;
 import me.limebyte.battlenight.core.Exceptions.AlreadyInBattleException;
 import me.limebyte.battlenight.core.Exceptions.BattleInProgressException;
 import me.limebyte.battlenight.core.Exceptions.NotInBattleException;
