@@ -1,8 +1,7 @@
-package me.limebyte.battlenight.core.Battle;
+package me.limebyte.battlenight.core.Battle.Arenas;
 
 import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Util;
-import me.limebyte.battlenight.core.Battle.Arenas.Arena;
 import me.limebyte.battlenight.core.Configuration.Config;
 import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
 

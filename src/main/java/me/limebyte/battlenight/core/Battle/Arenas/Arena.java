@@ -3,8 +3,8 @@ package me.limebyte.battlenight.core.Battle.Arenas;
 import org.bukkit.Location;
 
 import me.limebyte.battlenight.core.BattleNight;
-import me.limebyte.battlenight.core.Battle.Waypoint;
-import me.limebyte.battlenight.core.Battle.Waypoint.WaypointType;
+import me.limebyte.battlenight.core.Battle.Arenas.Waypoint;
+import me.limebyte.battlenight.core.Battle.Arenas.Waypoint.WaypointType;
 import me.limebyte.battlenight.core.Configuration.Config;
 import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
 
@@ -18,7 +18,7 @@ public class Arena {
     public Arena(BattleNight instance) {
         plugin = instance;
     }
-	
+
     private String name;
     private Waypoint aSpawn = new Waypoint(WaypointType.ASPAWN, this);
     private Waypoint bSpawn = new Waypoint(WaypointType.BSPAWN, this);
