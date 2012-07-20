@@ -2,6 +2,7 @@ package me.limebyte.battlenight.core.Battle.Classes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.inventory.ItemStack;
@@ -23,6 +24,16 @@ public class ClassManager {
 	
     public List<Class> getClasses() {
     	return classes;
+    }
+    
+    public HashMap<String, Class> getClassNames() {
+    	HashMap<String, Class> classList = new HashMap<String, Class>();
+    	
+    	for (Class c : classes) {
+    		classList.put(c.getName(), c);
+    	}
+    	
+    	return classList;
     }
     
     public void loadClasses() {
