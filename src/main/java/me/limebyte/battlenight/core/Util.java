@@ -7,6 +7,7 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.limebyte.battlenight.core.Tracks.Track;
 import me.limebyte.battlenight.core.Battle.Team;
 import me.limebyte.battlenight.core.Battle.Classes.ArmourType;
 import me.limebyte.battlenight.core.Configuration.PlayerData;
@@ -53,8 +54,12 @@ public final class Util {
     //  Chat Related  //
     ////////////////////
     
-    public static void tellPlayer(Player p, Tracks.Track t) {
+    public static void tellPlayer(Player p, Track t) {
         p.sendMessage(t.getMessage());
+    }
+    
+    public static void tellPlayer(Player p, Track t, String... args) {
+        p.sendMessage(t.getMessage(args));
     }
     
     public static void tellPlayers(Player[] p, Tracks.Track t) {

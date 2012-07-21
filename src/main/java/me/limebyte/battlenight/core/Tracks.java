@@ -4,6 +4,7 @@ import me.limebyte.battlenight.core.Configuration.Config;
 import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
 
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
 
 /**
  * @author LimeByte.
@@ -18,26 +19,51 @@ public class Tracks {
         plugin = instance;
     }
     
+    private static String lang = "en.";
     private static final String prefix = ChatColor.GRAY + "[BattleNight] " + ChatColor.WHITE;
 
+    public static void setLanguage(String lang) {
+    	Tracks.lang = lang + ".";
+    }
+    
     public enum Track {
-	    NO_PERMISSION			("en.Commands.NoPermission"),
-	    PLAYER_ONLY				("en.Commands.PlayerOnly"),
-	    PLAYER_NOT_FOUND		("en.Commands.PlayerNotFound");
+	    NO_PERMISSION			("Commands.NoPermission"),
+	    PLAYER_ONLY				("Commands.PlayerOnly"),
+	    INVALID_COMMAND			("Commands.InvalidCommand"),
+	    PLAYER_NOT_FOUND		("Commands.PlayerNotFound");
 
         private Track(String configPath) {
             this.cp = configPath;
         }
+        
         private String cp;
 
         public String getMessage() {
-            String track = ConfigurationManager.get(Config.TRACKS).getString(cp);
-            return prefix + ChatColor.translateAlternateColorCodes('&', track);
+            return prefix + ChatColor.translateAlternateColorCodes('&', getConfigMessage());
         }
         
         public String getMessage(String... args) {
-        	String track = ConfigurationManager.get(Config.TRACKS).getString(cp).replaceAll("<arg([0-9])>", args[Integer.parseInt("$1")]);
+        	String track = getConfigMessage().replaceAll("<arg([0-9])>", args[Integer.parseInt("$1")]);
         	return prefix + ChatColor.translateAlternateColorCodes('&', track);
+        }
+        
+        private String getConfigMessage() {
+        	FileConfiguration config = ConfigurationManager.get(Config.TRACKS);
+        	String track;
+        	
+        	if (config.getString(lang + cp) == null) {
+        		if (config.getString("en." + cp) == null) {
+        			track = ChatColor.RED + "Track '" + cp + "' not found.  Please tell the author about this issue.";
+        		}
+        		else {
+        			track = config.getString("en." + cp);
+        		}
+        	}
+        	else {
+        		track = config.getString(lang + cp);
+        	}
+        	
+        	return track;
         }
     }
 }
