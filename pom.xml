@@ -32,6 +32,8 @@
     </dependencies>
 
     <build>
+    	<finalName>BattleNight.jar</finalName>
+    
         <resources>
             <resource>
                 <targetPath>.</targetPath>
