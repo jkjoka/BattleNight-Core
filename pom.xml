@@ -32,7 +32,7 @@
     </dependencies>
 
     <build>
-    	<finalName>BattleNight.jar</finalName>
+    	<finalName>BattleNight</finalName>
     
         <resources>
             <resource>
