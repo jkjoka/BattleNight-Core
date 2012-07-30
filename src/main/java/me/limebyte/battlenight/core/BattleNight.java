@@ -45,6 +45,7 @@ public class BattleNight extends JavaPlugin {
     	// Classes
     	classManager = new ClassManager(this);
     	classManager.loadClasses();
+    	classManager.saveClasses();
     	
         // Link classes
         playerData = new PlayerData(this);
@@ -63,10 +64,6 @@ public class BattleNight extends JavaPlugin {
 
     @Override
     public void onDisable() {
-    	
-    	// Classes
-    	classManager.saveClasses();
-    	
         // Print disable message to the console
         log.info("Version " + pdFile.getVersion() + " disabled.");
     }

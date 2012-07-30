@@ -1,9 +1,3 @@
-# BattleNight Version: 2.0
-# Classes Configuration File
-#
-# Add Classes as you wish but do not use spaces in names.
-# Items are i:de(eid/el)xa, i=Item d=data a=Amount eid=Enchantment ID el=Enchantment level.  Data and amount are optional
-
 Classes:
     Pyro:
         Armour: 298, 299, 300, 301

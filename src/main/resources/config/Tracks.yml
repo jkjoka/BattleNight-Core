@@ -1,12 +1,6 @@
-# BattleNight Version 2.0
-# Tracks File
-#
-# Remember to use spaces not tabs.
-# Colour codes: http://www.minecraftwiki.net/wiki/Classic_server_protocol#Color_Codes
-
 en:
     Commands:
-        NoPermission:       '&4You do not have permission to perform this command.'
-        PlayerOnly:         '&4This command can only be run by a Player.'
-        InvalidCommand:     '&4Invalid Command.  Type "/bn help" for help.'
-        PlayerNotFound:     '&4The player "<arg0>" was not found.'
+        NoPermission:       '&cYou do not have permission to perform this command.'
+        PlayerOnly:         '&cThis command can only be run by a Player.'
+        InvalidCommand:     '&cInvalid Command.  Type "/bn help" for help.'
+        PlayerNotFound:     '&cThe player "<arg0>" was not found.'
