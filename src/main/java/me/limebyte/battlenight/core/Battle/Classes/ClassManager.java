@@ -3,11 +3,8 @@ package me.limebyte.battlenight.core.Battle.Classes;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
@@ -52,8 +49,8 @@ public class ClassManager {
     public void saveClasses() {
     	ConfigurationManager.reload(configFile);
     	for (Class c : classes) {
-    		ConfigurationManager.get(configFile).set(c.getName() + ".Armour", parseItems(c.getArmour()));
-    		ConfigurationManager.get(configFile).set(c.getName() + ".Items", parseItems(c.getItems()));
+    		ConfigurationManager.get(configFile).set("Classes." + c.getName() + ".Armour", parseItems(c.getArmour()));
+    		ConfigurationManager.get(configFile).set("Classes." + c.getName() + ".Items", parseItems(c.getItems()));
     	}
     	ConfigurationManager.save(configFile);
     }
@@ -99,7 +96,7 @@ public class ClassManager {
 
 			// Do we have any enchantments?
 			if (part2.length == 2) {
-				String[] part4 = part2[1].split("|");
+				String[] part4 = part2[1].split("/");
 				
 				for (String s : part4) {
 					String[] splitEnchantment = s.replace("(", "").replace(")", "").split("~");
@@ -109,7 +106,6 @@ public class ClassManager {
 					
 					// Checks
 					if (splitEnchantment.length == 0) continue;
-					
 					
 					// Get the enchantment id
 					try {
@@ -155,11 +151,10 @@ public class ClassManager {
 			ItemStack stack = new ItemStack(id, 1, data);
 			
 			if (!enchantments.isEmpty()) {
-				Iterator<Entry<Enchantment, Integer>> it = enchantments.entrySet().iterator();
-				while (it.hasNext()) {
-					try {
-						stack.addEnchantment(it.next().getKey(), it.next().getValue());
-					} catch (Exception ex) {} 
+				try {
+					stack.addEnchantments(enchantments);
+				} catch (Exception ex) {
+					//TODO Log it
 				}
 			}
 			
@@ -195,9 +190,8 @@ public class ClassManager {
 	    			String rawEnchantments = "";
 	    			rawItems += "e(";
 	    			
-	    			Iterator<Entry<Enchantment, Integer>> it = enchantments.entrySet().iterator();
-	    			while(it.hasNext()) {
-	    				rawEnchantments += "|" + it.next().getKey() + "~" + it.next().getValue();
+	    			for (Map.Entry<Enchantment, Integer> enchantment : enchantments.entrySet()) {
+	    			    rawEnchantments += "/" + enchantment.getKey().getId() + "~" + enchantment.getValue();
 	    			}
 	    			rawItems += rawEnchantments.substring(1);
 	    			
