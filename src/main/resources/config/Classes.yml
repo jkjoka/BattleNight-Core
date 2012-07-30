@@ -2,7 +2,7 @@
 # Classes Configuration File
 #
 # Add Classes as you wish but do not use spaces in names.
-# Items are i:dxa, i=Item d=data a=Ammount.  Data and ammount are optional
+# Items are i:dxa, i=Item d=data a=Amount.  Data and amount are optional
 
 Classes:
     Pyro:
@@ -13,7 +13,7 @@ Classes:
         Items: 272
     Swordsman:
         Armor: 306, 307, 308, 309
-        Items: 276, 373:8233
+        Items: 276e(16~5|19~2), 373:8233
     Archer:
         Armor: 302, 303, 304, 305
         Items: 261, 262x128
