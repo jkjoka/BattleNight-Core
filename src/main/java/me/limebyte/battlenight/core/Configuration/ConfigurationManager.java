@@ -19,7 +19,7 @@ public class ConfigurationManager {
     	
     	main = new Configuration(plugin, "Config.yml");
     	classes = new Configuration(plugin, "Classes.yml");
-    	tracks = new Configuration(plugin, "Tracks.yml");
+    	tracks = new Configuration(plugin, "Tracks.yml", "PluginData");
     	arenas = new Configuration(plugin, "Arenas.dat", "PluginData");
     	players = new Configuration(plugin, "Players.dat", "PluginData");
     	
