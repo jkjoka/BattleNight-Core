@@ -64,11 +64,10 @@ public class Configuration {
 	}
 	
     public void save() {
-        if (this.fileConfig == null || this.file == null) return;
         try {
             this.get().save(this.file);
         } catch (IOException ex) {
-            //TODO Log it
+        	ex.printStackTrace();
         }
     }
 	
