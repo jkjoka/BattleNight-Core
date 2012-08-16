@@ -4,3 +4,4 @@ en:
         PlayerOnly:         '&cThis command can only be run by a Player.'
         InvalidCommand:     '&cInvalid Command.  Type "/bn help" for help.'
         PlayerNotFound:     '&cThe player "<arg0>" was not found.'
+        InvalidWaypoint:    '&cInvalid Waypoint.'

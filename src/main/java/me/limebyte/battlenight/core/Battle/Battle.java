@@ -29,6 +29,7 @@ public class Battle {
     
     public Battle(BattleMode mode) {
     	this.mode = mode;
+    	arena = new Arena("general");
     }
     
     ////////////////////

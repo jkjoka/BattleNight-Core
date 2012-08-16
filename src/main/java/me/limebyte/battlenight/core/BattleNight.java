@@ -25,7 +25,7 @@ public class BattleNight extends JavaPlugin {
     public PluginDescriptionFile pdFile;
     public Logger log;
     private ClassManager classManager;
-    private Battle battle;
+    private static Battle battle;
 
     @Override
     public void onEnable() {
@@ -74,7 +74,7 @@ public class BattleNight extends JavaPlugin {
         return classManager;
     }
     
-    public Battle getBattle() {
+    public static Battle getBattle() {
     	return battle;
     }
     

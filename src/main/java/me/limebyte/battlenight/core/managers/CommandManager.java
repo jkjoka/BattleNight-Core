@@ -49,6 +49,21 @@ public class CommandManager implements CommandExecutor {
     		}
     	}
     	
+    	else if (arg[0].equalsIgnoreCase("set")) {
+    		if (Allowed(sender, "admin", false)) {
+	    		Player player = (Player) sender;
+	    		if (arg[1].equalsIgnoreCase("aspawn")) {
+	    			BattleNight.getBattle().getArena().setASpawn(player.getLocation());
+	    		}
+	    		else if (arg[1].equalsIgnoreCase("bspawn")) {
+	    			BattleNight.getBattle().getArena().setBSpawn(player.getLocation());
+	    		}
+	    		else {
+	    			Util.tellPlayer(player, Track.INVALID_WAYPOINT);
+	    		}
+    		}
+    	}
+    	
     	else {
     	    sender.sendMessage(Track.INVALID_COMMAND.getMessage());
     	}

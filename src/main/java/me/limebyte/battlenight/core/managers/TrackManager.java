@@ -31,7 +31,8 @@ public class TrackManager {
 	    NO_PERMISSION			("Commands.NoPermission"),
 	    PLAYER_ONLY				("Commands.PlayerOnly"),
 	    INVALID_COMMAND			("Commands.InvalidCommand"),
-	    PLAYER_NOT_FOUND		("Commands.PlayerNotFound");
+	    PLAYER_NOT_FOUND		("Commands.PlayerNotFound"),
+	    INVALID_WAYPOINT		("Commands.InvalidWaypoint");
 
         private Track(String configPath) {
             this.cp = configPath;
