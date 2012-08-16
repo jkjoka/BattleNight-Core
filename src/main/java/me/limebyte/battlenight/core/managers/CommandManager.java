@@ -1,6 +1,8 @@
-package me.limebyte.battlenight.core;
+package me.limebyte.battlenight.core.managers;
 
-import me.limebyte.battlenight.core.Tracks.Track;
+import me.limebyte.battlenight.core.BattleNight;
+import me.limebyte.battlenight.core.Util;
+import me.limebyte.battlenight.core.managers.TrackManager.Track;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,11 +14,11 @@ import org.bukkit.entity.Player;
  * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
-public class Commands implements CommandExecutor {
+public class CommandManager implements CommandExecutor {
 
     // Get Main Class
     public static BattleNight plugin;
-    public Commands(BattleNight instance) {
+    public CommandManager(BattleNight instance) {
         plugin = instance;
     }
 

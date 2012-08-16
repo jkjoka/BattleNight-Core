@@ -7,10 +7,11 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.limebyte.battlenight.core.Tracks.Track;
+import me.limebyte.battlenight.core.managers.PlayerManager;
+import me.limebyte.battlenight.core.managers.TrackManager;
+import me.limebyte.battlenight.core.managers.TrackManager.Track;
 import me.limebyte.battlenight.core.Battle.Team;
 import me.limebyte.battlenight.core.Battle.Classes.ArmourType;
-import me.limebyte.battlenight.core.Configuration.PlayerData;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -62,7 +63,7 @@ public final class Util {
         p.sendMessage(t.getMessage(args));
     }
     
-    public static void tellPlayers(Player[] p, Tracks.Track t) {
+    public static void tellPlayers(Player[] p, TrackManager.Track t) {
         for (Player aP : p) {
             aP.sendMessage(t.getMessage());
         }
@@ -73,15 +74,13 @@ public final class Util {
     ////////////////////
     
    public static void preparePlayer(Player p) {
-	   PlayerData pd = plugin.getPlayerData();
-	   pd.save(p);
-	   pd.reset(p);
+	   PlayerManager.save(p);
+	   PlayerManager.reset(p);
    }
    
    public static void restorePlayer(Player p) {
-	   PlayerData pd = plugin.getPlayerData();
-	   pd.reset(p);
-	   pd.restore(p);
+	   PlayerManager.reset(p);
+	   PlayerManager.restore(p);
    }
    
    ////////////////////

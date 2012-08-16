@@ -2,7 +2,7 @@ package me.limebyte.battlenight.core.Battle.Modes;
 
 import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Battle.Battle;
-import me.limebyte.battlenight.core.Battle.Team;
+import me.limebyte.battlenight.core.managers.PlayerManager;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -11,9 +11,6 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class Mode implements BattleMode,Listener {
-
-	private Team teamA;
-	private Team teamB;
 	
     // Get Main Class
     public static BattleNight plugin;
@@ -36,8 +33,8 @@ public class Mode implements BattleMode,Listener {
 	    
 	    Player killer = victim.getKiller();
 	    
-	    if (killer != null) plugin.getPlayerData().addKill(killer);
-	    plugin.getPlayerData().addDeath(victim);
+	    if (killer != null) PlayerManager.addKill(killer);
+	    PlayerManager.addDeath(victim);
 	    
 		onDeath(victim, killer);
 	}
@@ -52,14 +49,6 @@ public class Mode implements BattleMode,Listener {
 	
 	public void onRespawn() {
 		
-	}
-	
-	public Team getTeamA() {
-		return teamA;
-	}
-	
-	public Team getTeamB() {
-		return teamB;
 	}
 	
 }

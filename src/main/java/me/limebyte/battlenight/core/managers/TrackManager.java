@@ -1,5 +1,6 @@
-package me.limebyte.battlenight.core;
+package me.limebyte.battlenight.core.managers;
 
+import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Configuration.Config;
 import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
 
@@ -11,11 +12,11 @@ import org.bukkit.configuration.file.FileConfiguration;
  * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
-public class Tracks {
+public class TrackManager {
 
     // Get Main Class
     public static BattleNight plugin;
-    public Tracks(BattleNight instance) {
+    public TrackManager(BattleNight instance) {
         plugin = instance;
     }
     
@@ -23,7 +24,7 @@ public class Tracks {
     private static final String prefix = ChatColor.GRAY + "[BattleNight] " + ChatColor.WHITE;
 
     public static void setLanguage(String lang) {
-    	Tracks.lang = lang + ".";
+    	TrackManager.lang = lang + ".";
     }
     
     public enum Track {

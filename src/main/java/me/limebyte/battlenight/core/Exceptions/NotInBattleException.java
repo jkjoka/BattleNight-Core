@@ -3,7 +3,7 @@ package me.limebyte.battlenight.core.Exceptions;
 import org.bukkit.entity.Player;
 
 import me.limebyte.battlenight.core.Util;
-import me.limebyte.battlenight.core.Tracks.Track;
+import me.limebyte.battlenight.core.managers.TrackManager.Track;
 
 /**
  * Represents a NotInBattleException.

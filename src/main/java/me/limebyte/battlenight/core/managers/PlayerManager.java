@@ -1,4 +1,4 @@
-package me.limebyte.battlenight.core.Configuration;
+package me.limebyte.battlenight.core.managers;
 
 import static java.lang.Integer.parseInt;
 import static java.lang.Integer.toBinaryString;
@@ -7,6 +7,9 @@ import java.util.Arrays;
 
 import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Util;
+import me.limebyte.battlenight.core.Configuration.Config;
+import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
+
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -18,34 +21,31 @@ import org.bukkit.inventory.ItemStack;
  * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
-public class PlayerData {
+public class PlayerManager {
 
     // Get Main Class
     public static BattleNight plugin;
-    public PlayerData(BattleNight instance) {
+    public PlayerManager(BattleNight instance) {
         plugin = instance;
     }
     
-    public void reloadPlayer(Player p) {
+    private static void reloadStats(Player p) {
     	FileConfiguration config = ConfigurationManager.get(Config.PLAYERS);
-    	
-    	// Reload the config
-    	ConfigurationManager.reload(Config.PLAYERS);
     	
     	if(config.getConfigurationSection(p.getName()) == null) {
     		config.set(p.getName() + ".stats.kills", obfuscate(0));
     		config.set(p.getName() + ".stats.deaths", obfuscate(0));
-        	
-    		// Save changes
-        	ConfigurationManager.save(Config.PLAYERS);
     	}
     }
     
-    public void save(Player p) {
+    public static void save(Player p) {
     	FileConfiguration config = ConfigurationManager.get(Config.PLAYERS);
     	
     	// Reload the config
     	ConfigurationManager.reload(Config.PLAYERS);
+    	
+    	// Statistics
+    	reloadStats(p);
     	
     	// Inventory
     	config.set(p.getName() + ".data.inv.main", Arrays.asList(p.getInventory().getContents()));
@@ -80,11 +80,9 @@ public class PlayerData {
     	config.set(p.getName() + ".data.info.displayname", p.getDisplayName());
     	config.set(p.getName() + ".data.info.listname", p.getPlayerListName());
     	
-    	// Statistics
+    	// State
     	config.set(p.getName() + ".data.stats.tickslived", p.getTicksLived());
     	config.set(p.getName() + ".data.stats.nodamageticks", p.getNoDamageTicks());
-    	
-    	// State
     	config.set(p.getName() + ".data.state.remainingair", p.getRemainingAir());
     	config.set(p.getName() + ".data.state.falldistance", Float.toString(p.getFallDistance()));
     	config.set(p.getName() + ".data.state.fireticks", p.getFireTicks());
@@ -93,7 +91,7 @@ public class PlayerData {
     	ConfigurationManager.save(Config.PLAYERS);
     }
 
-    public void restore(Player p) {
+    public static void restore(Player p) {
     	FileConfiguration config = ConfigurationManager.get(Config.PLAYERS);
     	
     	// Reload the config
@@ -142,7 +140,7 @@ public class PlayerData {
     	p.setFireTicks(config.getInt(p.getName() + ".data.state.fireticks"));
     }
     
-    public void reset(Player p/**, Battle b**/) {
+    public static void reset(Player p/**, Battle b**/) {
     	Util.clearInventory(p);
     	p.setHealth(p.getMaxHealth());
     	p.setFoodLevel(16);
@@ -153,7 +151,6 @@ public class PlayerData {
     	p.setGameMode(GameMode.SURVIVAL);
     	p.setAllowFlight(false);
     	p.setFlying(false);
-    	//TODO p.teleport(b.getArena().getSpawn(team), TeleportCause.PLUGIN);
     	p.setSleepingIgnored(true);
     	//TODO p.setDisplayName(ChatColor.GRAY + "[BN] " + team.getChatColor() + p.getName() + ChatColor.RESET);
     	//TODO Util.setPlayerListName(p, t);
@@ -164,21 +161,21 @@ public class PlayerData {
     	p.setFireTicks(-20);
     }
 
-    public void addKill(Player killer) {
+    public static void addKill(Player killer) {
     	ConfigurationManager.get(Config.PLAYERS).set(killer.getName() + ".stats.kills", getKills(killer) + 1);
     	ConfigurationManager.save(Config.PLAYERS);
     }
 
-    public void addDeath(Player victom) {
+    public static void addDeath(Player victom) {
     	ConfigurationManager.get(Config.PLAYERS).set(victom.getName() + ".stats.deaths", getDeaths(victom) + 1);
     	ConfigurationManager.save(Config.PLAYERS);
     }
 
-    public int getKills(Player p) {
+    public static int getKills(Player p) {
         return deObfuscate(ConfigurationManager.get(Config.PLAYERS).getString(".stats.kills"));
     }
 
-    public int getDeaths(Player p) {
+    public static int getDeaths(Player p) {
     	return deObfuscate(ConfigurationManager.get(Config.PLAYERS).getString(".stats.deaths"));
     }
 
@@ -191,13 +188,11 @@ public class PlayerData {
     //      Util      //
     ////////////////////
     
-    // Obfuscate kills/deaths
-    private String obfuscate(int i) {
+    private static final String obfuscate(int i) {
         return toBinaryString(i).replace("0", "A").replace("1", "B");
     }
 
-    // De-Obfuscate kills/deaths
-    private int deObfuscate(String i) {
+    private static final int deObfuscate(String i) {
         return parseInt(i.replace("A", "0").replace("B", "1"), 2);
     }
     

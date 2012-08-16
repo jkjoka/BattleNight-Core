@@ -5,9 +5,9 @@ import java.util.List;
 
 import org.bukkit.entity.Player;
 
-import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Util;
 import me.limebyte.battlenight.core.Battle.Arenas.Arena;
+import me.limebyte.battlenight.core.Battle.Modes.BattleMode;
 import me.limebyte.battlenight.core.Exceptions.AlreadyInBattleException;
 import me.limebyte.battlenight.core.Exceptions.BattleInProgressException;
 import me.limebyte.battlenight.core.Exceptions.NotInBattleException;
@@ -22,14 +22,13 @@ import me.limebyte.battlenight.core.Exceptions.NotInBattleException;
 public class Battle {
     
     private Arena arena;
+    private BattleMode mode;
     private List<String> players = new ArrayList<String>();
     
     private boolean inProgress = false;
-
-    // Get Main Class
-    public static BattleNight plugin;
-    public Battle(BattleNight instance) {
-        plugin = instance;
+    
+    public Battle(BattleMode mode) {
+    	this.mode = mode;
     }
     
     ////////////////////
@@ -71,11 +70,7 @@ public class Battle {
     }
     
     public boolean containsPlayer(Player player) {
-    	for (String p : players) {
-    		if (player == plugin.getServer().getPlayerExact(p)) return true;
-    	}
-    	
-    	return false;
+    	return players.contains(player.getName());
     }
     
     ////////////////////
@@ -86,12 +81,12 @@ public class Battle {
 		return arena;
     }
     
-    public List<Player> getPlayers() {
-    	List<Player> playerList = new ArrayList<Player>();
-    	for (String p : players) {
-    		playerList.add(plugin.getServer().getPlayerExact(p));
-    	}
-		return playerList;
+    public BattleMode getMode() {
+		return mode;
+    }
+    
+    public List<String> getPlayers() {
+		return players;
     }
     
     public boolean isInProgress() {

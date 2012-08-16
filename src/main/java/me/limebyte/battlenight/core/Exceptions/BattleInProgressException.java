@@ -1,7 +1,7 @@
 package me.limebyte.battlenight.core.Exceptions;
 
 import me.limebyte.battlenight.core.Util;
-import me.limebyte.battlenight.core.Tracks.Track;
+import me.limebyte.battlenight.core.managers.TrackManager.Track;
 
 import org.bukkit.entity.Player;
 
