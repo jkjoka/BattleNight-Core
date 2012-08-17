@@ -77,7 +77,7 @@
                 <directory>${basedir}/src/main/resources/config/</directory>
                 <filtering>true</filtering>
                 <includes>
-                    <include>*.yml</include>
+                	<include>*.yml</include>
                     <include>*.dat</include>
                 </includes>
             </resource>

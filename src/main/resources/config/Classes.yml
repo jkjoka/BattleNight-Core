@@ -1,3 +1,6 @@
+# BattleNight Version ${project.version}
+# Classes Configuration
+
 Classes:
     Pyro:
         Armour: 298, 299, 300, 301

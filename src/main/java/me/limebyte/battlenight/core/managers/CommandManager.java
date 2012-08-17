@@ -28,7 +28,7 @@ public class CommandManager implements CommandExecutor {
 	    	if (Allowed(sender, "user", false)) {
 	    		Player player = (Player) sender;
 		    	try {
-					plugin.getBattle().addPlayer(player);
+					BattleNight.getBattle().addPlayer(player);
 				} catch (Exception e) {}
 	    	}
     	}
@@ -37,7 +37,7 @@ public class CommandManager implements CommandExecutor {
     		if (Allowed(sender, "user", false)) {
 	    		Player player = (Player) sender;
 	    		try {
-	    			plugin.getBattle().removePlayer(player);
+	    			BattleNight.getBattle().removePlayer(player);
 	    		} catch (Exception e) {}
     		}
     	}

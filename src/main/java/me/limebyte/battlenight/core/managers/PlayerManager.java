@@ -41,6 +41,8 @@ public class PlayerManager {
     public static void save(Player p) {
     	FileConfiguration config = ConfigurationManager.get(Config.PLAYERS);
     	
+    	String name = p.getName();
+    	
     	// Reload the config
     	ConfigurationManager.reload(Config.PLAYERS);
     	
@@ -48,44 +50,44 @@ public class PlayerManager {
     	reloadStats(p);
     	
     	// Inventory
-    	config.set(p.getName() + ".data.inv.main", Arrays.asList(p.getInventory().getContents()));
-    	config.set(p.getName() + ".data.inv.armor", Arrays.asList(p.getInventory().getArmorContents()));
+    	config.set(name + ".data.inv.main", Arrays.asList(p.getInventory().getContents()));
+    	config.set(name + ".data.inv.armor", Arrays.asList(p.getInventory().getArmorContents()));
     	
     	// Health
-    	config.set(p.getName() + ".data.health", p.getHealth());
+    	config.set(name + ".data.health", p.getHealth());
     	
     	// Hunger
-    	config.set(p.getName() + ".data.hunger.foodlevel", p.getFoodLevel());
-    	config.set(p.getName() + ".data.hunger.saturation", Float.toString(p.getSaturation()));
-    	config.set(p.getName() + ".data.hunger.exhaustion", Float.toString(p.getExhaustion()));
+    	config.set(name + ".data.hunger.foodlevel", p.getFoodLevel());
+    	config.set(name + ".data.hunger.saturation", Float.toString(p.getSaturation()));
+    	config.set(name + ".data.hunger.exhaustion", Float.toString(p.getExhaustion()));
     	
     	// Experience
-    	config.set(p.getName() + ".data.exp.level", p.getLevel());
-    	config.set(p.getName() + ".data.exp.ammount", Float.toString(p.getExp()));
+    	config.set(name + ".data.exp.level", p.getLevel());
+    	config.set(name + ".data.exp.ammount", Float.toString(p.getExp()));
     	
     	// GameMode
-    	config.set(p.getName() + ".data.gamemode", p.getGameMode().getValue());
+    	config.set(name + ".data.gamemode", p.getGameMode().getValue());
     	
     	// Flying
-    	config.set(p.getName() + ".data.flight.allowed", p.getAllowFlight());
-    	config.set(p.getName() + ".data.flight.flying", p.isFlying());
+    	config.set(name + ".data.flight.allowed", p.getAllowFlight());
+    	config.set(name + ".data.flight.flying", p.isFlying());
     	
     	// Locations
-    	config.set(p.getName() + ".data.location", Util.locationToString(p.getLocation()));
-    	
+    	config.set(name + ".data.location", Util.locationToString(p.getLocation()));
+   	
     	// Sleep
-    	config.set(p.getName() + ".data.sleepignored", p.isSleepingIgnored());
+    	config.set(name + ".data.sleepignored", p.isSleepingIgnored());
     	
     	// Information
-    	config.set(p.getName() + ".data.info.displayname", p.getDisplayName());
-    	config.set(p.getName() + ".data.info.listname", p.getPlayerListName());
-    	
+    	config.set(name + ".data.info.displayname", p.getDisplayName());
+    	config.set(name + ".data.info.listname", p.getPlayerListName());
+    	    	
     	// State
-    	config.set(p.getName() + ".data.stats.tickslived", p.getTicksLived());
-    	config.set(p.getName() + ".data.stats.nodamageticks", p.getNoDamageTicks());
-    	config.set(p.getName() + ".data.state.remainingair", p.getRemainingAir());
-    	config.set(p.getName() + ".data.state.falldistance", Float.toString(p.getFallDistance()));
-    	config.set(p.getName() + ".data.state.fireticks", p.getFireTicks());
+    	config.set(name + ".data.stats.tickslived", p.getTicksLived());
+    	config.set(name + ".data.stats.nodamageticks", p.getNoDamageTicks());
+    	config.set(name + ".data.state.remainingair", p.getRemainingAir());
+    	config.set(name + ".data.state.falldistance", Float.toString(p.getFallDistance()));
+    	config.set(name + ".data.state.fireticks", p.getFireTicks());
     	
     	// Save it all
     	ConfigurationManager.save(Config.PLAYERS);
@@ -94,50 +96,52 @@ public class PlayerManager {
     public static void restore(Player p) {
     	FileConfiguration config = ConfigurationManager.get(Config.PLAYERS);
     	
+    	String name = p.getName();
+    	
     	// Reload the config
     	ConfigurationManager.reload(Config.PLAYERS);
     	
     	// Inventory
-    	p.getInventory().setContents(config.getList(p.getName() + ".data.inv.main").toArray(new ItemStack[0]));
-    	p.getInventory().setArmorContents(config.getList(p.getName() + ".data.inv.armor").toArray(new ItemStack[0]));
+    	p.getInventory().setContents(config.getList(name + ".data.inv.main").toArray(new ItemStack[0]));
+    	p.getInventory().setArmorContents(config.getList(name + ".data.inv.armor").toArray(new ItemStack[0]));
     	
     	// Health
-    	p.setHealth(config.getInt(p.getName() + ".data.health"));
+    	p.setHealth(config.getInt(name + ".data.health"));
     	
     	// Hunger
-    	p.setFoodLevel(config.getInt(p.getName() + ".data.hunger.foodlevel"));
-    	p.setSaturation(Float.parseFloat(config.getString(p.getName() + ".data.hunger.saturation")));
-    	p.setExhaustion(Float.parseFloat(config.getString(p.getName() + ".data.hunger.exhaustion")));
+    	p.setFoodLevel(config.getInt(name + ".data.hunger.foodlevel"));
+    	p.setSaturation(Float.parseFloat(config.getString(name + ".data.hunger.saturation")));
+    	p.setExhaustion(Float.parseFloat(config.getString(name + ".data.hunger.exhaustion")));
     	
     	// Experience
-    	p.setLevel(config.getInt(p.getName() + ".data.exp.level"));
-    	p.setExp(Float.parseFloat(config.getString(p.getName() + ".data.exp.ammount")));
+    	p.setLevel(config.getInt(name + ".data.exp.level"));
+    	p.setExp(Float.parseFloat(config.getString(name + ".data.exp.ammount")));
     	
     	// GameMode
-    	p.setGameMode(GameMode.getByValue(config.getInt(p.getName() + ".data.gamemode")));
+    	p.setGameMode(GameMode.getByValue(config.getInt(name + ".data.gamemode")));
     	
     	// Flying
-    	p.setAllowFlight(config.getBoolean(p.getName() + ".data.flight.allowed"));
-    	p.setFlying(config.getBoolean(p.getName() + ".data.flight.flying"));
+    	p.setAllowFlight(config.getBoolean(name + ".data.flight.allowed"));
+    	p.setFlying(config.getBoolean(name + ".data.flight.flying"));
     	
     	// Locations
-    	p.teleport(Util.locationFromString(config.getString(p.getName() + ".data.location")), TeleportCause.PLUGIN);
+    	p.teleport(Util.locationFromString(config.getString(name + ".data.location")), TeleportCause.PLUGIN);
     	
     	// Sleep
-    	p.setSleepingIgnored(config.getBoolean(p.getName() + ".data.sleepignored"));
+    	p.setSleepingIgnored(config.getBoolean(name + ".data.sleepignored"));
     	
     	// Information
-    	p.setDisplayName(config.getString(p.getName() + ".data.info.displayname"));
-    	p.setPlayerListName(config.getString(p.getName() + ".data.info.listname"));
+    	p.setDisplayName(config.getString(name + ".data.info.displayname"));
+    	p.setPlayerListName(config.getString(name + ".data.info.listname"));
     	
     	// Statistics
-    	p.setTicksLived(config.getInt(p.getName() + ".data.stats.tickslived"));
-    	p.setNoDamageTicks(config.getInt(p.getName() + ".data.stats.nodamageticks"));
+    	p.setTicksLived(config.getInt(name + ".data.stats.tickslived"));
+    	p.setNoDamageTicks(config.getInt(name + ".data.stats.nodamageticks"));
     	
     	// State
-    	p.setRemainingAir(config.getInt(p.getName() + ".data.state.remainingair"));
-    	p.setFallDistance(Float.parseFloat(config.getString(p.getName() + ".data.state.falldistance")));
-    	p.setFireTicks(config.getInt(p.getName() + ".data.state.fireticks"));
+    	p.setRemainingAir(config.getInt(name + ".data.state.remainingair"));
+    	p.setFallDistance(Float.parseFloat(config.getString(name + ".data.state.falldistance")));
+    	p.setFireTicks(config.getInt(name + ".data.state.fireticks"));
     }
     
     public static void reset(Player p/**, Battle b**/) {
