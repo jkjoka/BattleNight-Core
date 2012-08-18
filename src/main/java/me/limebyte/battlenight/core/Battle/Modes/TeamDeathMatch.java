@@ -5,7 +5,7 @@ import me.limebyte.battlenight.core.Battle.Team;
 import org.bukkit.entity.Player;
 
 public class TeamDeathMatch implements BattleMode {
-
+	
 	private Team teamA;
 	private Team teamB;
 	
@@ -30,6 +30,11 @@ public class TeamDeathMatch implements BattleMode {
 	
 	public Team getTeamB() {
 		return teamB;
+	}
+
+	@Override
+	public int getNumTeams() {
+		return 2;
 	}
 
 }

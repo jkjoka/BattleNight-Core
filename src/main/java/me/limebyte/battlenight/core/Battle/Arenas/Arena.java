@@ -1,5 +1,7 @@
 package me.limebyte.battlenight.core.Battle.Arenas;
 
+import java.util.HashMap;
+
 import org.bukkit.Location;
 
 import me.limebyte.battlenight.core.BattleNight;
@@ -20,8 +22,7 @@ public class Arena {
     }
 
     private String name;
-    private Waypoint aSpawn = new Waypoint(WaypointType.ASPAWN, this);
-    private Waypoint bSpawn = new Waypoint(WaypointType.BSPAWN, this);
+    private HashMap<String, Waypoint> waypoints = new HashMap<String, Waypoint>();
     private static final Config configFile = Config.ARENAS;
     
     ////////////////////
@@ -66,21 +67,12 @@ public class Arena {
     }
 
     /**
-     * Gets the team A spawn waypoint associated with this arena.
+     * Gets the waypoint associated with this name.
      * 
-     * @return The waypoint
+     * @return The Waypoint
      */
-    public Waypoint getASpawn() {
-        return aSpawn;
-    }
-
-    /**
-     * Gets the team B spawn waypoint associated with this arena.
-     * 
-     * @return The waypoint.
-     */
-    public Waypoint getBSpawn() {
-        return bSpawn;
+    public Waypoint getWaypoint(String name) {
+        return waypoints.get(name);
     }
     
 
@@ -99,21 +91,17 @@ public class Arena {
     }
 
     /**
-     * Sets the location for the team A waypoint.
+     * Creates a new Waypoint if non-existent and sets the location.
      * 
      * @param location The spawn location.
      */
-    public void setASpawn(Location location) {
-        aSpawn.setLocation(location);
-    }
-
-    /**
-     * Sets the location for the team B waypoint.
-     * 
-     * @param location The spawn location.
-     */
-    public void setBSpawn(Location location) {
-        bSpawn.setLocation(location);
+    public void setWaypoint(String name, WaypointType type, Location location) {
+        if (waypoints.containsKey(name)) {
+        	waypoints.get(name).setLocation(location);
+        }
+        else {
+        	waypoints.put(name, new Waypoint(type, this));
+        }
     }
     
     /**
@@ -148,7 +136,28 @@ public class Arena {
      * @return Whether it is setup.
      */
     public boolean isSetup() {
-        return (aSpawn.isSet() && bSpawn.isSet());
+    		int spawnCount = 0;
+    		
+    		for (Waypoint wp : waypoints.values()) {
+    			switch (wp.getType()) {
+    				case SPAWN: {
+    					if (wp.isSet()) spawnCount++;
+    					break;
+    				}
+    				case LOUNGE: {
+    					if (!wp.isSet()) return false;
+    					break;
+    				}
+    				case SPECTATOR: {
+    					if (!wp.isSet()) return false;
+    					break;
+    				}
+    				default: break;
+    			}
+    		}
+    		
+    		if (spawnCount >= BattleNight.getBattle().getMode().getNumTeams()) return true;
+    		else return false;
     }
     
     /**

@@ -18,7 +18,9 @@ public class Mode implements BattleMode,Listener {
         plugin = instance;
     }
     
-	private Battle battle = plugin.getBattle();
+    private static final int DEFAULT_NUM_TEAMS = 2;
+    
+	private Battle battle = BattleNight.getBattle();
 	
 	public void onEntityDeath(EntityDeathEvent event) {
 		
@@ -49,6 +51,10 @@ public class Mode implements BattleMode,Listener {
 	
 	public void onRespawn() {
 		
+	}
+	
+	public int getNumTeams() {
+		return DEFAULT_NUM_TEAMS;
 	}
 	
 }

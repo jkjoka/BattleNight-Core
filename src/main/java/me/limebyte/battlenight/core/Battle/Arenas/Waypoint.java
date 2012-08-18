@@ -145,11 +145,9 @@ public class Waypoint {
      * Represents various types of waypoints.
      */
     public enum WaypointType {
-        ASPAWN,
-        BSPAWN,
+    	SPAWN,
         LOUNGE,
-        SPECTATOR,
-        EXIT;
+        SPECTATOR;
         
         /**
          * Gets the configuration name for the type.
