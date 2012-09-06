@@ -55,17 +55,9 @@ public class CommandManager implements CommandExecutor {
 		    		Player player = (Player) sender;
 		    		
 		    		if (arg[1] != null) {
-			    		if (arg[1].equalsIgnoreCase("aspawn")) {
-			    			BattleNight.getBattle().getArena().setWaypoint("aspawn", WaypointType.SPAWN, player.getLocation());
-			    		}
-			    		else if (arg[1].equalsIgnoreCase("bspawn")) {
-			    			BattleNight.getBattle().getArena().setWaypoint("bspawn", WaypointType.SPAWN, player.getLocation());
-			    		}
-			    		else if (arg[1].equalsIgnoreCase("lounge")) {
-			    			BattleNight.getBattle().getArena().setWaypoint("lounge", WaypointType.LOUNGE, player.getLocation());
-			    		}
-			    		else if (arg[1].equalsIgnoreCase("spectator")) {
-			    			BattleNight.getBattle().getArena().setWaypoint("bspawn", WaypointType.SPECTATOR, player.getLocation());
+		    			if (arg[1].equalsIgnoreCase("lounge")) {
+			    			BattleNight.getBattle().getArena().setWaypoint(WaypointType.LOUNGE, player.getLocation());
+			    			Util.tellPlayer(player, Track.GLOBAL_WAYPOINT_SET, "Lounge");
 			    		}
 			    		else {
 			    			Util.tellPlayer(player, Track.INVALID_WAYPOINT);

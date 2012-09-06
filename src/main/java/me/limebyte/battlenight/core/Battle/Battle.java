@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import me.limebyte.battlenight.core.Util;
 import me.limebyte.battlenight.core.Battle.Arenas.Arena;
+import me.limebyte.battlenight.core.Battle.Arenas.Waypoint.WaypointType;
 import me.limebyte.battlenight.core.Battle.Modes.BattleMode;
 import me.limebyte.battlenight.core.Exceptions.AlreadyInBattleException;
 import me.limebyte.battlenight.core.Exceptions.BattleInProgressException;
 import me.limebyte.battlenight.core.Exceptions.NotInBattleException;
+import me.limebyte.battlenight.core.Exceptions.WaypointsNotSetException;
 
 /**
  * Represents a Battle
@@ -29,7 +32,7 @@ public class Battle {
     
     public Battle(BattleMode mode) {
     	this.mode = mode;
-    	arena = new Arena("general");
+    	arena = new Arena("default");
     }
     
     ////////////////////
@@ -51,11 +54,13 @@ public class Battle {
      * @throws AlreadyInBattleException
      */
     public void addPlayer(Player player) {
+    	if (!arena.isSetup(WaypointType.LOUNGE)) throw new WaypointsNotSetException(player);
         if (this.isInProgress()) throw new BattleInProgressException(player);
         if (this.containsPlayer(player)) throw new AlreadyInBattleException(player);
         
         players.add(player.getName());
         Util.preparePlayer(player);
+        player.teleport(arena.getWaypoint(WaypointType.LOUNGE).getLocation(), TeleportCause.PLUGIN);
     }
     
     /**

@@ -1,10 +1,7 @@
 package me.limebyte.battlenight.core.Battle.Arenas;
 
-import java.util.HashMap;
-
 import org.bukkit.Location;
 
-import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Battle.Arenas.Waypoint;
 import me.limebyte.battlenight.core.Battle.Arenas.Waypoint.WaypointType;
 import me.limebyte.battlenight.core.Configuration.Config;
@@ -14,16 +11,15 @@ import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
  * Represents a saved Arena.
  */
 public class Arena {
-    
-    // Get Main Class
-    public static BattleNight plugin;
-    public Arena(BattleNight instance) {
-        plugin = instance;
-    }
 
     private String name;
-    private HashMap<String, Waypoint> waypoints = new HashMap<String, Waypoint>();
     private static final Config configFile = Config.ARENAS;
+    
+    private Waypoint aSpawn = new Waypoint(WaypointType.ASPAWN, this);
+    private Waypoint bSpawn = new Waypoint(WaypointType.BSPAWN, this);
+    private Waypoint spectator = new Waypoint(WaypointType.SPECTATOR, this);
+    
+    private static Waypoint lounge = new Waypoint(WaypointType.LOUNGE);
     
     ////////////////////
     //  Constructors  //
@@ -71,8 +67,22 @@ public class Arena {
      * 
      * @return The Waypoint
      */
-    public Waypoint getWaypoint(String name) {
-        return waypoints.get(name);
+    public Waypoint getWaypoint(WaypointType type) {
+    	switch (type) {
+    		case ASPAWN: {
+    			return aSpawn;
+    		}
+    		case BSPAWN: {
+    			return bSpawn;
+    		}
+    		case SPECTATOR: {
+    			return spectator;
+    		}
+    		case LOUNGE: {
+    			return lounge;
+    		}
+    		default: return null;
+    	}
     }
     
 
@@ -95,13 +105,10 @@ public class Arena {
      * 
      * @param location The spawn location.
      */
-    public void setWaypoint(String name, WaypointType type, Location location) {
-        if (waypoints.containsKey(name)) {
-        	waypoints.get(name).setLocation(location);
-        }
-        else {
-        	waypoints.put(name, new Waypoint(type, this));
-        }
+    public void setWaypoint(WaypointType type, Location location) {
+    	if (getWaypoint(type) != null) {
+    		getWaypoint(type).setLocation(location);
+    	}
     }
     
     /**
@@ -130,34 +137,25 @@ public class Arena {
     //    Checkers    //
     ////////////////////
     
+    public boolean isSetup(WaypointType type) {
+    	if (getWaypoint(type) != null) {
+    		if (getWaypoint(type).isSet()) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
     /**
      * Checks if the arena is setup.
      * 
      * @return Whether it is setup.
      */
     public boolean isSetup() {
-    		int spawnCount = 0;
-    		
-    		for (Waypoint wp : waypoints.values()) {
-    			switch (wp.getType()) {
-    				case SPAWN: {
-    					if (wp.isSet()) spawnCount++;
-    					break;
-    				}
-    				case LOUNGE: {
-    					if (!wp.isSet()) return false;
-    					break;
-    				}
-    				case SPECTATOR: {
-    					if (!wp.isSet()) return false;
-    					break;
-    				}
-    				default: break;
-    			}
-    		}
-    		
-    		if (spawnCount >= BattleNight.getBattle().getMode().getNumTeams()) return true;
-    		else return false;
+    	for (WaypointType type : WaypointType.values()) {
+    		if (!isSetup(type)) return false;
+    	}
+    	return true;
     }
     
     /**

@@ -10,3 +10,5 @@ en:
         InvalidCommand:     '&cInvalid Command.  Type "/bn help" for help.'
         PlayerNotFound:     '&cThe player "<arg0>" was not found.'
         InvalidWaypoint:    '&cInvalid Waypoint.'
+        GlobalWaypointSet:  'Global Waypoint "<arg0>" set.'
+        ArenaWaypointSet:   'Waypoint "<arg0>" set for Arena "<arg1>".'

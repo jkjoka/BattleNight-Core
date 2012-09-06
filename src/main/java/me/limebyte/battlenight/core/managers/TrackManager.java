@@ -32,7 +32,9 @@ public class TrackManager {
 	    PLAYER_ONLY				("Commands.PlayerOnly"),
 	    INVALID_COMMAND			("Commands.InvalidCommand"),
 	    PLAYER_NOT_FOUND		("Commands.PlayerNotFound"),
-	    INVALID_WAYPOINT		("Commands.InvalidWaypoint");
+	    INVALID_WAYPOINT		("Commands.InvalidWaypoint"),
+	    GLOBAL_WAYPOINT_SET		("Commands.GlobalWaypointSet"),
+	    ARENA_WAYPOINT_SET		("Commands.ArenaWaypointSet");
 
         private Track(String configPath) {
             this.cp = configPath;

@@ -8,7 +8,7 @@ import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
 import org.bukkit.Location;
 
 /**
- * Represents a saved waypoint for general use or for an Arena.
+ * Represents a saved waypoint for global use or for an Arena.
  */
 public class Waypoint {
 
@@ -57,7 +57,7 @@ public class Waypoint {
     ////////////////////
     
     /**
-     * Gets the arena associated with this waypoint.  This may return null if it is a general
+     * Gets the arena associated with this waypoint.  This may return null if it is a global
      * waypoint.
      * 
      * @return The arena.
@@ -92,7 +92,7 @@ public class Waypoint {
         	loc = ConfigurationManager.get(configFile).getString(arena.getName() + "." + type.getName());
         }
         else {
-        	loc = ConfigurationManager.get(configFile).getString("general." + type.getName());
+        	loc = ConfigurationManager.get(configFile).getString("global." + type.getName());
         }
         
         // Convert it to a Location
@@ -119,7 +119,7 @@ public class Waypoint {
         	ConfigurationManager.get(configFile).set(arena.getName() + ".waypoints." + type.getName(), loc);
         }
         else {
-        	ConfigurationManager.get(configFile).set("general." + type.getName(), loc);
+        	ConfigurationManager.get(configFile).set("global." + type.getName(), loc);
         }
         
         // Save the configuration
@@ -145,7 +145,8 @@ public class Waypoint {
      * Represents various types of waypoints.
      */
     public enum WaypointType {
-    	SPAWN,
+    	ASPAWN,
+    	BSPAWN,
         LOUNGE,
         SPECTATOR;
         
