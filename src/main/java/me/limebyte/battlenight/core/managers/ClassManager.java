@@ -1,4 +1,4 @@
-package me.limebyte.battlenight.core.Battle.Classes;
+package me.limebyte.battlenight.core.managers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,17 +8,16 @@ import java.util.Map;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 
-import me.limebyte.battlenight.core.BattleNight;
-import me.limebyte.battlenight.core.Configuration.Config;
-import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
+import me.limebyte.battlenight.core.Battle.classes.Class;
+import me.limebyte.battlenight.core.configuration.Config;
+import me.limebyte.battlenight.core.configuration.ConfigurationManager;
 
+/**
+ * @author LimeByte.
+ * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
+ * http://creativecommons.org/licenses/by-nc-nd/3.0/
+ */
 public class ClassManager {
-
-    // Get Main Class
-    public static BattleNight plugin;
-    public ClassManager(BattleNight instance) {
-        plugin = instance;
-    }
 	
     private static List<Class> classes = new ArrayList<Class>();
     private static final Config configFile = Config.CLASSES;

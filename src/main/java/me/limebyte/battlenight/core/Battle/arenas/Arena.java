@@ -1,14 +1,18 @@
-package me.limebyte.battlenight.core.Battle.Arenas;
+package me.limebyte.battlenight.core.Battle.arenas;
 
 import org.bukkit.Location;
 
-import me.limebyte.battlenight.core.Battle.Arenas.Waypoint;
-import me.limebyte.battlenight.core.Battle.Arenas.Waypoint.WaypointType;
-import me.limebyte.battlenight.core.Configuration.Config;
-import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
+import me.limebyte.battlenight.core.Battle.arenas.Waypoint;
+import me.limebyte.battlenight.core.Battle.arenas.Waypoint.WaypointType;
+import me.limebyte.battlenight.core.configuration.Config;
+import me.limebyte.battlenight.core.configuration.ConfigurationManager;
 
 /**
  * Represents a saved Arena.
+ *
+ * @author LimeByte.
+ * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
+ * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
 public class Arena {
 

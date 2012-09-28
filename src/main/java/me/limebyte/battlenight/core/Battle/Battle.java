@@ -7,13 +7,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import me.limebyte.battlenight.core.Util;
-import me.limebyte.battlenight.core.Battle.Arenas.Arena;
-import me.limebyte.battlenight.core.Battle.Arenas.Waypoint.WaypointType;
-import me.limebyte.battlenight.core.Battle.Modes.BattleMode;
-import me.limebyte.battlenight.core.Exceptions.AlreadyInBattleException;
-import me.limebyte.battlenight.core.Exceptions.BattleInProgressException;
-import me.limebyte.battlenight.core.Exceptions.NotInBattleException;
-import me.limebyte.battlenight.core.Exceptions.WaypointsNotSetException;
+import me.limebyte.battlenight.core.Battle.arenas.Arena;
+import me.limebyte.battlenight.core.Battle.arenas.Waypoint.WaypointType;
+import me.limebyte.battlenight.core.Battle.modes.BattleMode;
+import me.limebyte.battlenight.core.exceptions.AlreadyInBattleException;
+import me.limebyte.battlenight.core.exceptions.BattleInProgressException;
+import me.limebyte.battlenight.core.exceptions.NotInBattleException;
+import me.limebyte.battlenight.core.exceptions.WaypointsNotSetException;
 
 /**
  * Represents a Battle

@@ -1,22 +1,19 @@
-package me.limebyte.battlenight.core.Battle.Arenas;
+package me.limebyte.battlenight.core.Battle.arenas;
 
-import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Util;
-import me.limebyte.battlenight.core.Configuration.Config;
-import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
+import me.limebyte.battlenight.core.configuration.Config;
+import me.limebyte.battlenight.core.configuration.ConfigurationManager;
 
 import org.bukkit.Location;
 
 /**
  * Represents a saved waypoint for global use or for an Arena.
+ * 
+ * @author LimeByte.
+ * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
+ * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
 public class Waypoint {
-
-    // Get Main Class
-    public static BattleNight plugin;
-    public Waypoint(BattleNight instance) {
-        plugin = instance;
-    }
 	
     private Arena arena;
     private WaypointType type;

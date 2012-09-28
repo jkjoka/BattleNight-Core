@@ -5,10 +5,9 @@ import static java.lang.Integer.toBinaryString;
 
 import java.util.Arrays;
 
-import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Util;
-import me.limebyte.battlenight.core.Configuration.Config;
-import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
+import me.limebyte.battlenight.core.configuration.Config;
+import me.limebyte.battlenight.core.configuration.ConfigurationManager;
 
 import org.bukkit.GameMode;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -22,12 +21,6 @@ import org.bukkit.inventory.ItemStack;
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
 public class PlayerManager {
-
-    // Get Main Class
-    public static BattleNight plugin;
-    public PlayerManager(BattleNight instance) {
-        plugin = instance;
-    }
     
     private static void reloadStats(Player p) {
     	FileConfiguration config = ConfigurationManager.get(Config.PLAYERS);

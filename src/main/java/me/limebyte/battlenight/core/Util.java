@@ -11,7 +11,7 @@ import me.limebyte.battlenight.core.managers.PlayerManager;
 import me.limebyte.battlenight.core.managers.TrackManager;
 import me.limebyte.battlenight.core.managers.TrackManager.Track;
 import me.limebyte.battlenight.core.Battle.Team;
-import me.limebyte.battlenight.core.Battle.Classes.ArmourType;
+import me.limebyte.battlenight.core.Battle.classes.ArmourType;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -26,12 +26,6 @@ import org.bukkit.inventory.PlayerInventory;
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
 public final class Util {
-    
-    // Get Main Class
-    public static BattleNight plugin;
-    public Util(BattleNight instance) {
-        plugin = instance;
-    }
 	
     public static String locationToString(Location loc) {
     	String w = loc.getWorld().getName();
@@ -120,7 +114,10 @@ public final class Util {
 	   return sorted;
    }
    
-   // Config
+   
+   ////////////////////
+   // Configuration  //
+   ////////////////////
    
    public static void copyFile(InputStream in, File file) {
        try {

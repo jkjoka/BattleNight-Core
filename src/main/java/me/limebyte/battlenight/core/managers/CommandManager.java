@@ -2,7 +2,7 @@ package me.limebyte.battlenight.core.managers;
 
 import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Util;
-import me.limebyte.battlenight.core.Battle.Arenas.Waypoint.WaypointType;
+import me.limebyte.battlenight.core.Battle.arenas.Waypoint.WaypointType;
 import me.limebyte.battlenight.core.managers.TrackManager.Track;
 
 import org.bukkit.command.Command;
@@ -16,12 +16,6 @@ import org.bukkit.entity.Player;
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
 public class CommandManager implements CommandExecutor {
-
-    // Get Main Class
-    public static BattleNight plugin;
-    public CommandManager(BattleNight instance) {
-        plugin = instance;
-    }
 
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] arg) {
     	if (arg.length > 1) {
@@ -46,7 +40,7 @@ public class CommandManager implements CommandExecutor {
 	    	else if (arg[0].equalsIgnoreCase("equip")) {
 	    		if (Allowed(sender, "admin", false)) {
 		    		Player player = (Player) sender;
-		    		plugin.getClassManager().getClasses().get(1).equip(player);
+		    		BattleNight.getClassManager().getClasses().get(1).equip(player);
 	    		}
 	    	}
 	    	

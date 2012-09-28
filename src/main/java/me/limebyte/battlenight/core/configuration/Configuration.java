@@ -1,4 +1,4 @@
-package me.limebyte.battlenight.core.Configuration;
+package me.limebyte.battlenight.core.configuration;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,6 +10,11 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+/**
+ * @author LimeByte.
+ * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
+ * http://creativecommons.org/licenses/by-nc-nd/3.0/
+ */
 public class Configuration {
 
 	private String fileName;

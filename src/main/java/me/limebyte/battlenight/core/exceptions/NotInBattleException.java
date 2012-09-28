@@ -1,4 +1,4 @@
-package me.limebyte.battlenight.core.Exceptions;
+package me.limebyte.battlenight.core.exceptions;
 
 import org.bukkit.entity.Player;
 

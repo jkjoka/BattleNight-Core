@@ -1,4 +1,4 @@
-package me.limebyte.battlenight.core.Battle.Modes;
+package me.limebyte.battlenight.core.Battle.modes;
 
 import me.limebyte.battlenight.core.BattleNight;
 import me.limebyte.battlenight.core.Battle.Battle;
@@ -10,6 +10,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+/**
+ * @author LimeByte.
+ * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
+ * http://creativecommons.org/licenses/by-nc-nd/3.0/
+ */
 public class Mode implements BattleMode,Listener {
 	
     // Get Main Class

@@ -1,8 +1,13 @@
-package me.limebyte.battlenight.core.Battle.Classes;
+package me.limebyte.battlenight.core.Battle.classes;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * @author LimeByte.
+ * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
+ * http://creativecommons.org/licenses/by-nc-nd/3.0/
+ */
 public enum ArmourType {
 	HELMET		(Material.CHAINMAIL_HELMET,
 				 Material.IRON_HELMET,

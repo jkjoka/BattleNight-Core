@@ -5,9 +5,9 @@ import java.util.logging.Logger;
 import me.limebyte.battlenight.core.Battle.Battle;
 import me.limebyte.battlenight.core.Battle.Team;
 import me.limebyte.battlenight.core.Battle.Team.TeamColour;
-import me.limebyte.battlenight.core.Battle.Classes.ClassManager;
-import me.limebyte.battlenight.core.Battle.Modes.TeamDeathMatch;
-import me.limebyte.battlenight.core.Configuration.ConfigurationManager;
+import me.limebyte.battlenight.core.Battle.modes.TeamDeathMatch;
+import me.limebyte.battlenight.core.configuration.ConfigurationManager;
+import me.limebyte.battlenight.core.managers.ClassManager;
 import me.limebyte.battlenight.core.managers.CommandManager;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
@@ -18,13 +18,12 @@ import org.bukkit.plugin.java.JavaPlugin;
  * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
  * http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
-
 public class BattleNight extends JavaPlugin {
 
 	private static BattleNight instance;
     public PluginDescriptionFile pdFile;
     public Logger log;
-    private ClassManager classManager;
+    private static ClassManager classManager;
     private static Battle battle;
 
     @Override
@@ -42,7 +41,7 @@ public class BattleNight extends JavaPlugin {
     	ConfigurationManager.initialize();
     	
     	// Classes
-    	classManager = new ClassManager(this);
+    	classManager = new ClassManager();
     	classManager.loadClasses();
     	classManager.saveClasses();
     	
@@ -50,7 +49,7 @@ public class BattleNight extends JavaPlugin {
         battle = new Battle(new TeamDeathMatch(new Team("Orange", TeamColour.ORANGE), new Team("Lime", TeamColour.LIME)));
         
         // Load command class
-        CommandManager cmdExecutor = new CommandManager(this);
+        CommandManager cmdExecutor = new CommandManager();
         getCommand("bn").setExecutor(cmdExecutor);
 
         // Print enable message to the console
@@ -70,7 +69,7 @@ public class BattleNight extends JavaPlugin {
         return null;
     }
     
-    public ClassManager getClassManager() {
+    public static ClassManager getClassManager() {
         return classManager;
     }
     

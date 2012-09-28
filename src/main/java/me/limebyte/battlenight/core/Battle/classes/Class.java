@@ -1,4 +1,4 @@
-package me.limebyte.battlenight.core.Battle.Classes;
+package me.limebyte.battlenight.core.Battle.classes;
 
 import java.util.List;
 
@@ -8,6 +8,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
+/**
+ * @author LimeByte.
+ * Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
+ * http://creativecommons.org/licenses/by-nc-nd/3.0/
+ */
 public final class Class {
 
 	private String name;
