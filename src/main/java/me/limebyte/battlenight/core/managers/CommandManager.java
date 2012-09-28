@@ -40,7 +40,7 @@ public class CommandManager implements CommandExecutor {
 	    	else if (arg[0].equalsIgnoreCase("equip")) {
 	    		if (Allowed(sender, "admin", false)) {
 		    		Player player = (Player) sender;
-		    		BattleNight.getClassManager().getClasses().get(1).equip(player);
+		    		BattleNight.getClassManager().getRandomClass().equip(player);
 	    		}
 	    	}
 	    	
