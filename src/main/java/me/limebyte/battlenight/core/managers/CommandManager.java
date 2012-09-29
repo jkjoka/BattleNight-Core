@@ -18,7 +18,7 @@ import org.bukkit.entity.Player;
 public class CommandManager implements CommandExecutor {
 
     public boolean onCommand(CommandSender sender, Command cmd, String s, String[] arg) {
-    	if (arg.length > 1) {
+    	if (arg.length > 0) {
 	    	if (arg[0].equalsIgnoreCase("join")) {
 		    	if (Allowed(sender, "user", false)) {
 		    		Player player = (Player) sender;
