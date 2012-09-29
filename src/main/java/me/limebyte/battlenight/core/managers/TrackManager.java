@@ -1,5 +1,8 @@
 package me.limebyte.battlenight.core.managers;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import me.limebyte.battlenight.core.configuration.Config;
 import me.limebyte.battlenight.core.configuration.ConfigurationManager;
 
@@ -40,7 +43,7 @@ public class TrackManager {
         }
         
         public String getMessage(String... args) {
-        	String track = getConfigMessage().replaceAll("<arg([0-9])>", args[Integer.parseInt("$1")]);
+        	String track = parseInArgs(getConfigMessage(), args);
         	return prefix + ChatColor.translateAlternateColorCodes('&', track);
         }
         
@@ -61,6 +64,19 @@ public class TrackManager {
         	}
         	
         	return track;
+        }
+        
+        private String parseInArgs(String message, String... args) {
+        	Pattern pattern = Pattern.compile("<arg([0-9])>");
+        	Matcher matcher = pattern.matcher(message);
+        	
+        	StringBuffer sb = new StringBuffer(message.length());
+        	while (matcher.find()) {
+        		String text = args[Integer.parseInt(matcher.group(1))];
+        	    matcher.appendReplacement(sb, Matcher.quoteReplacement(text));
+        	}
+        	matcher.appendTail(sb);
+        	return sb.toString();
         }
     }
 }
