@@ -1223,7 +1223,6 @@ public class BattleNight extends JavaPlugin {
     	
  	    player.setPlayerListName(pListName.length() < 16 ? pListName : pListName.substring(0, 16));
     	player.setDisplayName(ChatColor.GRAY + "[BN] " + teamColour + name + ChatColor.RESET);
-    	TagAPI.refreshPlayer(player);
 	}
 	
 	private void removePotionEffects(Player p) {
