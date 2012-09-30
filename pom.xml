@@ -64,7 +64,7 @@
             <groupId>org.kitteh</groupId>
             <artifactId>tagapi</artifactId>
             <version>${tagAPIVersion}</version>
-            <scope>compile</scope>
+            <type>jar</type>
         </dependency>
     </dependencies>
 
