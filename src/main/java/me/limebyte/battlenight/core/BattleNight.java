@@ -23,7 +23,6 @@ import me.limebyte.battlenight.core.Listeners.DamageListener;
 import me.limebyte.battlenight.core.Listeners.DeathListener;
 import me.limebyte.battlenight.core.Listeners.DisconnectListener;
 import me.limebyte.battlenight.core.Listeners.DropListener;
-import me.limebyte.battlenight.core.Listeners.NameTagListener;
 import me.limebyte.battlenight.core.Listeners.ReadyListener;
 import me.limebyte.battlenight.core.Listeners.RespawnListener;
 import me.limebyte.battlenight.core.Listeners.SignChanger;
@@ -84,7 +83,6 @@ public class BattleNight extends JavaPlugin {
 	private final SignChanger blockListener = new SignChanger(this);
 	private final CheatListener cheatListener = new CheatListener(this);
 	private final CommandBlocker commandBlocker = new CommandBlocker(this);
-	private final NameTagListener nameTagListener = new NameTagListener(this);
 	
 	public boolean redTeamIronClicked = false;
 	public boolean blueTeamIronClicked = false;
@@ -166,7 +164,6 @@ public class BattleNight extends JavaPlugin {
 		pm.registerEvents(blockListener, this);
 		pm.registerEvents(cheatListener, this);
 		pm.registerEvents(commandBlocker, this);
-		pm.registerEvents(nameTagListener, this);
 
 		// Metrics
 		try {

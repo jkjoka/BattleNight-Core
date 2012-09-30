@@ -15,7 +15,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<githubRepo>BattleNight/BattleNight-Core</githubRepo>
 		<bukkitVersion>1.3.2-R1.0</bukkitVersion>
-		<tagAPIVersion>1.7</tagAPIVersion>
 	</properties>
   
 	<!-- License -->
@@ -46,10 +45,6 @@
             <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public/</url>
         </repository>
-        <repository>
-            <id>kitteh-repo</id>
-            <url>http://repo.kitteh.org/content/repositories/public/</url>
-        </repository>
     </repositories>
 
 	<!-- Dependencies -->
@@ -59,12 +54,6 @@
             <artifactId>bukkit</artifactId>
             <version>${bukkitVersion}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.kitteh</groupId>
-            <artifactId>tagapi</artifactId>
-            <version>${tagAPIVersion}</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
 

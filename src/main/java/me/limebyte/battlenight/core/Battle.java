@@ -1,8 +1,5 @@
 package me.limebyte.battlenight.core;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import me.limebyte.battlenight.core.API.BattleEndEvent;
 import me.limebyte.battlenight.core.BattleNight.WPoint;
 import me.limebyte.battlenight.core.Other.Tracks.Track;
@@ -10,7 +7,6 @@ import me.limebyte.battlenight.core.Other.Tracks.Track;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import org.kitteh.tag.TagAPI;
 
 public class Battle {
 
@@ -114,13 +110,10 @@ public class Battle {
 		if (removeHash) {
 			plugin.BattleUsersTeam.remove(player.getName());
 			plugin.BattleUsersClass.remove(player.getName());
-			TagAPI.refreshPlayer(player);
 		}
 	}
 	
 	private void resetBattle() {
-		Map<String, String> toUnTag = new HashMap<String, String>(plugin.BattleUsersTeam);
-		
 		plugin.removeAllSpectators();
 		plugin.cleanSigns();
 		plugin.BattleSigns.clear();
@@ -131,11 +124,6 @@ public class Battle {
 		plugin.BattleUsersClass.clear();
 		redTeam = 0;
 		blueTeam = 0;
-		
-		for (String name : toUnTag.keySet()) {
-			TagAPI.refreshPlayer(Bukkit.getPlayer(name));
-		}
-		toUnTag.clear();
 	}
 	
 	public void end() {
