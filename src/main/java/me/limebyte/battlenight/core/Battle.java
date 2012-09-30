@@ -36,6 +36,7 @@ public class Battle {
 				blueTeam++;
 			}
 			
+			plugin.setNames(player);
 			plugin.playersInLounge = true;
 		} else {
 			plugin.tellPlayer(player, Track.MUST_HAVE_EMPTY);

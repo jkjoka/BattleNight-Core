@@ -1173,8 +1173,6 @@ public class BattleNight extends JavaPlugin {
 	}
 	
 	public void reset(Player p, boolean light) {
-		String name = p.getName();
-		
 		PlayerInventory inv = p.getInventory();
 		inv.clear();
 		inv.setArmorContents(new ItemStack[inv.getArmorContents().length]);
@@ -1193,14 +1191,7 @@ public class BattleNight extends JavaPlugin {
 	    	p.setFlying(false);
 	    	p.setSleepingIgnored(true);
 	    	
-	    	String pListName = "�7[BN] " + name;
-	    	ChatColor teamColour = ChatColor.WHITE;
-	    	if (BattleUsersTeam.containsKey(name)) {
-	    		teamColour = BattleUsersTeam.get(name) == "red" ? ChatColor.RED : ChatColor.BLUE; 
-	    	}
-	    	
-	 	    p.setPlayerListName(pListName.length() < 16 ? pListName : pListName.substring(0, 16));
-	    	p.setDisplayName(ChatColor.GRAY + "[BN] " + teamColour + p.getName() + ChatColor.RESET);
+	    	setNames(p);
 	    	
 	    	p.setTicksLived(1);
 	    	p.setNoDamageTicks(0);
@@ -1209,6 +1200,19 @@ public class BattleNight extends JavaPlugin {
 	    	p.setFireTicks(-20);
 		}
     }
+	
+	public void setNames(Player player) {
+		String name = player.getName();
+		
+		String pListName = ChatColor.GRAY + "[BN] " + name;
+    	ChatColor teamColour = ChatColor.WHITE;
+    	if (BattleUsersTeam.containsKey(name)) {
+    		teamColour = BattleUsersTeam.get(name) == "red" ? ChatColor.RED : ChatColor.BLUE; 
+    	}
+    	
+ 	    player.setPlayerListName(pListName.length() < 16 ? pListName : pListName.substring(0, 16));
+    	player.setDisplayName(ChatColor.GRAY + "[BN] " + teamColour + name + ChatColor.RESET);
+	}
 	
 	private void removePotionEffects(Player p) {
 	    for(PotionEffect effect : p.getActivePotionEffects()) {
