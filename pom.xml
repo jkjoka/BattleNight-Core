@@ -46,6 +46,10 @@
             <id>bukkit-repo</id>
             <url>http://repo.bukkit.org/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>kitteh-repo</id>
+            <url>http://repo.kitteh.org/content/repositories/public/</url>
+        </repository>
     </repositories>
 
 	<!-- Dependencies -->
@@ -57,10 +61,10 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-        	<groupId>org.bukkit</groupId>
-        	<artifactId>craftbukkit</artifactId>
-        	<version>${bukkitVersion}</version>
-        	<scope>provided</scope>
+            <groupId>org.kitteh</groupId>
+            <artifactId>tagapi</artifactId>
+            <version>${tagAPIVersion}</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 

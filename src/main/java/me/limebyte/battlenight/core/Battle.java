@@ -6,11 +6,11 @@ import java.util.Map;
 import me.limebyte.battlenight.core.API.BattleEndEvent;
 import me.limebyte.battlenight.core.BattleNight.WPoint;
 import me.limebyte.battlenight.core.Other.Tracks.Track;
-import me.limebyte.battlenight.core.TagAPI.TagAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.kitteh.tag.TagAPI;
 
 public class Battle {
 

@@ -1,11 +1,11 @@
 package me.limebyte.battlenight.core.Listeners;
 
 import me.limebyte.battlenight.core.BattleNight;
-import me.limebyte.battlenight.core.TagAPI.PlayerReceiveNameTagEvent;
 
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.kitteh.tag.PlayerReceiveNameTagEvent;
 
 public class NameTagListener implements Listener {
 

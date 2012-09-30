@@ -29,7 +29,6 @@ import me.limebyte.battlenight.core.Listeners.RespawnListener;
 import me.limebyte.battlenight.core.Listeners.SignChanger;
 import me.limebyte.battlenight.core.Listeners.SignListener;
 import me.limebyte.battlenight.core.Other.Tracks.Track;
-import me.limebyte.battlenight.core.TagAPI.TagAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -62,8 +61,6 @@ public class BattleNight extends JavaPlugin {
 	public static final String BNKTag = ChatColor.GRAY
 			+ "[BattleNight KillFeed] " + ChatColor.WHITE;
 	public Set<String> ClassList;
-	public static BattleNight instance;
-	private static TagAPI tagAPI;
 
 	// HashMaps
 	public final Map<String, String> BattleUsersTeam = new HashMap<String, String>();
@@ -125,8 +122,6 @@ public class BattleNight extends JavaPlugin {
 			battle.end();
 		}
 		this.cleanSigns();
-		tagAPI.disable();
-		
 		PluginDescriptionFile pdfFile = getDescription();
 		log.info("[BattleNight] Version " + pdfFile.getVersion()
 				+ " has been disabled.");
@@ -137,10 +132,7 @@ public class BattleNight extends JavaPlugin {
 	// ////////////////////
 	@Override
 	public void onEnable() {
-		instance = this;
-		tagAPI = new TagAPI();
-		tagAPI.enable();
-		
+
 		// Initialise Files and FileConfigurations
 		configFile = new File(getDataFolder(), "config.yml");
 		classesFile = new File(getDataFolder(), "classes.yml");
