@@ -16,6 +16,7 @@
 UsePermissions: false
 ReadyBlock: 42
 InventoryType: save
+GameMode: 0
 
 FriendlyFire: false
 StopHealthRegen: true

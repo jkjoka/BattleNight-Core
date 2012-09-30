@@ -1186,7 +1186,7 @@ public class BattleNight extends JavaPlugin {
 	    	p.setExhaustion(0);
 	    	p.setLevel(0);
 	    	p.setExp(0);
-	    	p.setGameMode(GameMode.SURVIVAL);
+	    	p.setGameMode(GameMode.getByValue(config.getInt("GameMode", 0)));
 	    	p.setAllowFlight(false);
 	    	p.setFlying(false);
 	    	p.setSleepingIgnored(true);
