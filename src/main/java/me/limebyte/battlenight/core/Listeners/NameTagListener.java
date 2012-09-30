@@ -23,13 +23,17 @@ public class NameTagListener implements Listener {
 			String team = plugin.BattleUsersTeam.get(name);
 			if (team == "red") {
 				event.setTag(ChatColor.RED + name);
+				BattleNight.log.info("Good");
 			} else if (team =="blue") {
 				event.setTag(ChatColor.BLUE + name);
+				BattleNight.log.info("Good");
 			} else {
+				BattleNight.log.info("Bad");
 				return;
 			}
 		}
 		
+		BattleNight.log.info("Badish");
 		event.setTag(name);
 	}
 	
