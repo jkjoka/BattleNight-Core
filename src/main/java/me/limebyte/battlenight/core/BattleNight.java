@@ -27,6 +27,7 @@ import me.limebyte.battlenight.core.Listeners.ReadyListener;
 import me.limebyte.battlenight.core.Listeners.RespawnListener;
 import me.limebyte.battlenight.core.Listeners.SignChanger;
 import me.limebyte.battlenight.core.Listeners.SignListener;
+import me.limebyte.battlenight.core.Other.NamePlate;
 import me.limebyte.battlenight.core.Other.Tracks.Track;
 
 import org.bukkit.Bukkit;
@@ -1210,6 +1211,7 @@ public class BattleNight extends JavaPlugin {
     		teamColour = BattleUsersTeam.get(name) == "red" ? ChatColor.RED : ChatColor.BLUE; 
     	}
     	
+    	NamePlate.setColour(player, teamColour);
  	    player.setPlayerListName(pListName.length() < 16 ? pListName : pListName.substring(0, 16));
     	player.setDisplayName(ChatColor.GRAY + "[BN] " + teamColour + name + ChatColor.RESET);
 	}
