@@ -1,7 +1,11 @@
 package me.limebyte.battlenight.core;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import me.limebyte.battlenight.core.API.BattleEndEvent;
 import me.limebyte.battlenight.core.BattleNight.WPoint;
+import me.limebyte.battlenight.core.Other.NamePlate;
 import me.limebyte.battlenight.core.Other.Tracks.Track;
 
 import org.bukkit.Bukkit;
@@ -110,10 +114,13 @@ public class Battle {
 		if (removeHash) {
 			plugin.BattleUsersTeam.remove(player.getName());
 			plugin.BattleUsersClass.remove(player.getName());
+			NamePlate.reset(player);
 		}
 	}
 	
 	private void resetBattle() {
+		Map<String, String> toRefresh = new HashMap<String, String>(plugin.BattleUsersTeam);
+		
 		plugin.removeAllSpectators();
 		plugin.cleanSigns();
 		plugin.BattleSigns.clear();
@@ -124,6 +131,11 @@ public class Battle {
 		plugin.BattleUsersClass.clear();
 		redTeam = 0;
 		blueTeam = 0;
+		
+		for (String name : toRefresh.keySet()) {
+			NamePlate.reset(Bukkit.getPlayer(name));
+		}
+		toRefresh.clear();
 	}
 	
 	public void end() {
