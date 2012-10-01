@@ -16,7 +16,6 @@
 UsePermissions: false
 ReadyBlock: 42
 InventoryType: save
-GameMode: 0
 
 FriendlyFire: false
 StopHealthRegen: true
@@ -33,5 +32,8 @@ Commands:
         - toggledownfall
         - stop
         - reload
+        - kick
+        - ban
+        - time
 
 Debug: false
